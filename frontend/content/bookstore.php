@@ -141,7 +141,7 @@
 					<tr> 
 					  <th scope="row"><?php echo $count;?></th> 
                       <td><?php echo $rows[$count]['id'];?></td> 
-					  <td><a href="http://localhost/BookStoreManageSystem/frontend/content/book.php?id=<?php echo $rows[$count]['id'];?>"><?php echo $rows[$count]['TName'];?></a></td> 
+					  <td><a href="../content/book.php?id=<?php echo $rows[$count]['id'];?>"><?php echo $rows[$count]['TName'];?></a></td> 
 					  <td><?php echo $rows[$count]['address'];?></td> 
 					  <td><?php echo $rows[$count]['phone'];?></td> 
 					  <td><?php echo $rows[$count]['business_hour'];?></td> 
