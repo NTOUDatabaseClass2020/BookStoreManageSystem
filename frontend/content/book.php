@@ -125,7 +125,38 @@
 	  slider.startAuto();
 	});
   </script>
+  <script>
+	//   function ChangeContent(ToyID){
+	// 	document.getElementById("ToyID").value = ToyID;
+	// 	document.getElementById("mfrom").action = "toy_edit.php";
+	// 	document.getElementById("mfrom").submit();
+	// }
+	
+	// function UpdateContent(){
+	// 	document.getElementById("ToyID").value = document.getElementById("ToyID").value;
+	// 	document.getElementById("TName").value = document.getElementById("TName").value;
+	// 	document.getElementById("Price").value = document.getElementById("Price").value;
+	// 	document.getElementById("Description").value = document.getElementById("Description").value;
+	// 	document.getElementById("Name").value = document.getElementById("Name").value;
+	// 	document.getElementById("Address").value = document.getElementById("Address").value;
+	// 	document.getElementById("Phone").value = document.getElementById("Phone").value;
+	// 	document.getElementById("mfrom").action = "toy_mdysave.php";
+	// 	document.getElementById("mfrom").submit();
+	// }
+	
+	// function DeleteContent(){
+	// 	document.getElementById("ToyID").value = document.getElementById("ToyID").value;
+	// 	document.getElementById("mfrom").action = "toy_delsave.php";
+	// 	document.getElementById("mfrom").submit();
+	// }
+	
+	function InsertContent(){
+		document.getElementById("mfrom").action = "book_add.php";
+		document.getElementById("mfrom").submit();
+	}
+  </script>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a id='title' class="navbar-brand" href="../index.php">BookStore Manage System</a>
@@ -141,6 +172,7 @@
 </nav>
 <div class="content">
 	<div class="inner_content">
+		
 		<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 			總數量為: 
 			<?php
@@ -153,6 +185,8 @@
 				if($rowcount = $stmt->fetchColumn())
 					echo $rowcount;
 			?>
+			<button class="btn btn-default"><a href="./book_add.php?id=<?php echo $_GET["id"]; ?>">新增</a></button>
+			<button class="btn btn-default"><a href="./book_del.php?id=<?php echo $_GET["id"]; ?>">刪除</a></button>
 		</div>
 		<table class="table"> 
 		  <thead> 

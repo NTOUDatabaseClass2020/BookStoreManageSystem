@@ -83,65 +83,106 @@
 	form {
 		margin-bottom: 0em;
 	}
+	
   </style>
-  <link type="text/css" rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
-  <link type="text/css" rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  <link type="text/css" rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.css">
-  <link type="text/css" rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
-  <script>	
-	function InsertContent(){
-		document.getElementById("TName").value = document.getElementById("TName").value;
-		document.getElementById("Price").value = document.getElementById("Price").value;
-		document.getElementById("Description").value = document.getElementById("Description").value;
-		document.getElementById("Name").value = document.getElementById("Name").value;
-		document.getElementById("Address").value = document.getElementById("Address").value;
-		document.getElementById("Phone").value = document.getElementById("Phone").value;
-		document.getElementById("mfrom").action = "toy_addsave.php";
-		document.getElementById("mfrom").submit();
-	}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.bxslider.min.js"></script>
+  <link href="css/jquery.bxslider.min.css" rel="stylesheet" />
+  <script>
+	$(document).ready(function(){
+	  slider = $('.bxslider').bxSlider(
+		  {
+			  pagerCustom: '#bx-pager'
+		  }
+	  );
+	  slider.startAuto();
+	});
   </script>
+
+<script type="text/javascript">
+var $theid = 1
+function addrow($id)
+    {
+		var $idname = "#"+$id;
+		$theid += 1; 
+      $($idname).append('<tr id="'+$theid+'"> '+
+						'<th></th>'+
+						'<td><input type="text" id="book_Price" name="book_Price[]" value=""/></td> '+
+						'<td><input type="text" id="book_Amount" name="book_Amount[]" value=""/></td>'+ 
+						'<td><input type="text" id="book_Name" name="book_Name[]" value=""/></td> '+
+						'<td><input type="text" id="book_Description" name="book_Description[]" value=""/></td>'+ 
+						'<td><input type="text" id="book_Type" name="book_Type[]" value=""/></td>'+ 
+						'<td><input type="text" id="img_url" name="img_url[]" value=""/></td>'+ 
+					'</tr>');  
+			   
+			  
+	}
+	
+function delrow()
+{
+	if($theid>1){
+		
+		var $idname = "#"+$theid;
+	$($idname).remove();
+		$theid -= 1; 
+	}
+	
+		
+}
+//   $("a[id='del_file[]']").click(function(){
+//       if (confirm('確定刪除檔案')) {
+//         return true;
+//       }
+//       return false;
+//   });    
+
+ </script>
 </head>
 <body>
-<form id="mfrom" method="post" action="toy_edit.php">
-	<div class="menu">
-		<table class="menu_css">
-			<tr>
-				<td>
-					<a href="../index.php">Home</a>
-				</td>
-				<td>
-					<a href="toy.php">玩具屋</a>
-				</td>
-				<td>
-					<a href="toy_edit.php">編輯玩具屋</a>
-				</td>
-			</tr>
-		</table>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a id='title' class="navbar-brand" href="../index.php">BookStore Manage System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link " href="../index.php">首頁 </a>
+      <a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
+	  <a class="nav-item nav-link active" href="book.php?id=<?php echo $_GET["id"]?>">編輯書店<span class="sr-only">(current)</span></a>
 	</div>
+  </div>
+</nav>
+<form method="get" action="book_addsave.php" enctype="multipart/form-data">
 	<div class="content">
 		<div class="inner_content">
-			<table class="table">
+			<input type="button" id="add_button" name="add_button" onclick="addrow('add_file_button')" value="增加附加欄位">
+			<input type="button" id="add_button" name="add_button" onclick="delrow()" value="減少附加欄位">
+			<button type="submit" name="id" value="<?php echo $_GET["id"]?>" >點我新增</button>
+			<table class="table" >
 			  <thead>
 				<tr> 
-				  <th>#</th> 
-				  <th>玩具</th> 
-				  <th>玩具價錢</th> 
-				  <th>玩具描述</th> 
-				  <th>廠商名字</th> 
-				  <th>廠商地址</th> 
-				  <th>廠商電話</th> 
+				<th>#</th>
+				<th>book價錢</th> 
+				<th>book數量</th> 
+				<th>book名稱</th> 
+				<th>book描述</th> 
+				<th>book種類</th> 
+				<th>封面</th> 
 				</tr>  
 			  </thead> 
-			  <tbody>
-					<tr> 
-					  <th scope="row"><a onclick="InsertContent();">按我新增</a></th> 
-					  <td><input type="text" id="TName" name="TName" value=""/></td> 
-					  <td><input type="text" id="Price" name="Price" value=""/></td> 
-					  <td><input type="text" id="Description" name="Description" value=""/></td> 
-					  <td><input type="text" id="Name" name="Name" value=""/></td> 
-					  <td><input type="text" id="Address" name="Address" value=""/></td> 
-					  <td><input type="text" id="Phone" name="Phone" value=""/></td> 
-					</tr> 
+			  <tbody id="add_file_button">
+					<tr id="1"> 
+						<th></th>
+						<td><input type="text" id="book_Price" name="book_Price[]" value=""/></td> 
+						<td><input type="text" id="book_Amount" name="book_Amount[]" value=""/></td> 
+						<td><input type="text" id="book_Name" name="book_Name[]" value=""/></td> 
+						<td><input type="text" id="book_Description" name="book_Description[]" value=""/></td> 
+						<td><input type="text" id="book_Type" name="book_Type[]" value=""/></td> 
+						<td><input type="text" id="img_url" name="img_url[]" value=""/></td> 
+					</tr>
 			  </tbody> 
 			</table>
 		</div>

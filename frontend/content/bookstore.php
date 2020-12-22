@@ -100,7 +100,6 @@
   </div>
 </nav>
 <div class="content">
-<div class="content">
 	<div class="inner_content">
 		<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 			總數量為: 

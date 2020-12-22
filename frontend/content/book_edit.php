@@ -144,7 +144,7 @@
 <form id="mfrom" method="post" action="toy_edit.php">
 	<input type="hidden" id="ToyID" name="ToyID" value="<?php echo isset($_POST["ToyID"])?$_POST["ToyID"]:""?>">
 	<div class="menu">
-		<table class="menu_css">
+		<!-- <table class="menu_css">
 			<tr>
 				<td>
 					<a href="../index.php">Home</a>
@@ -156,8 +156,8 @@
 					<a href="toy_edit.php">編輯玩具屋</a>
 				</td>
 			</tr>
-		</table>
-		<table class="menu_search">
+		</table> -->
+		<!-- <table class="menu_search">
 			<tr>
 				<td>
 					<form method="post" action="toy.php">
@@ -167,7 +167,7 @@
 					</form>
 				</td>
 			</tr>
-		</table>
+		</table> -->
 	</div>
 	<div class="content">
 		<div class="inner_content">
