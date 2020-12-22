@@ -150,10 +150,10 @@
 	// 	document.getElementById("mfrom").submit();
 	// }
 	
-	function InsertContent(){
-		document.getElementById("mfrom").action = "book_add.php";
-		document.getElementById("mfrom").submit();
-	}
+	// function InsertContent(){
+	// 	document.getElementById("mfrom").action = "book_add.php";
+	// 	document.getElementById("mfrom").submit();
+	// }
   </script>
 </head>
 
@@ -187,6 +187,7 @@
 			?>
 			<button class="btn btn-default"><a href="./book_add.php?id=<?php echo $_GET["id"]; ?>">新增</a></button>
 			<button class="btn btn-default"><a href="./book_del.php?id=<?php echo $_GET["id"]; ?>">刪除</a></button>
+			<button class="btn btn-default"><a href="./book_edit.php?id=<?php echo $_GET["id"]; ?>">修改</a></button>
 		</div>
 		<table class="table"> 
 		  <thead> 

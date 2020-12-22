@@ -117,7 +117,7 @@
 	}
 	
 	function UpdateContent(){
-		document.getElementById("ToyID").value = document.getElementById("ToyID").value;
+		document.getElementById("id").value = document.getElementById("ToyID").value;
 		document.getElementById("TName").value = document.getElementById("TName").value;
 		document.getElementById("Price").value = document.getElementById("Price").value;
 		document.getElementById("Description").value = document.getElementById("Description").value;
@@ -141,7 +141,7 @@
   </script>
 </head>
 <body>
-<form id="mfrom" method="post" action="toy_edit.php">
+<form id="mfrom" method="post" action="book_editsave.php">
 	<input type="hidden" id="ToyID" name="ToyID" value="<?php echo isset($_POST["ToyID"])?$_POST["ToyID"]:""?>">
 	<div class="menu">
 		<!-- <table class="menu_css">
@@ -176,9 +176,10 @@
 			  <div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 				總數量為: 
 			<?php
-				$sql = "SELECT COUNT(*) FROM toy WHERE AreaCode = '201609260001'";
+				$id = $_GET["id"];
+				$sql = "SELECT COUNT(*) FROM books WHERE bookstore_id = ?";
 				$stmt =  $db->prepare($sql);
-				$error = $stmt->execute();
+				$error = $stmt->execute(array($$id));
 				
 				if($rowcount = $stmt->fetchColumn())
 					echo $rowcount;
@@ -186,23 +187,25 @@
 			  </div>
 			  <thead>
 				<tr> 
-				  <th>#</th> 
-				  <th>玩具</th> 
-				  <th>玩具價錢</th> 
-				  <th>玩具描述</th> 
-				  <th>廠商名字</th> 
-				  <th>廠商地址</th> 
-				  <th>廠商電話</th> 
+				<th>#</th> 
+				<th>id</th> 
+				<th>book價錢</th> 
+				<th>book數量</th>
+				<th>book名稱</th>
+				<th>book描述</th> 
+				<th>book種類/th> 
+				<th>封面</th> 
+				<th></th> 
 				</tr>  
 			  </thead> 
 			  <tbody> 
-				<?php
-					if(isset($_POST["ToyID"]) && !empty($_POST["ToyID"])){
-						$ToyID = $_POST["ToyID"];
+			  <?php
+					if(isset($_POST["id"]) && !empty($_POST["id"])){
+						$id = $_POST["id"];
 						
-						$sql = "SELECT t.ToyID,t.Name TName,t.Price,t.Description,ts.Name,ts.Address,ts.Phone FROM `toy` t left join `toysupplier` ts on t.ToyID = ts.ToyID WHERE t.ToyID = ?";
+						$sql = "SELECT * FROM `books` t left join `bookstores` ts on t.bookstore_id = ts.id WHERE t.bookstore_id = ?";
 						if($stmt = $db->prepare($sql)){
-						$stmt->execute(array($ToyID));			
+						$stmt->execute(array($id));			
 						if($result = $stmt->fetch()){						
 				?>
 						<tr> 
@@ -210,12 +213,12 @@
 						  	<a class="btn btn-default" role="button" onclick="UpdateContent();">按我更新</a>
 						  	<a class="btn btn-default" role="button" onclick="DeleteContent();">按我刪除</a>
 						  </th> 
-						  <td><input type="text" id="TName" name="TName" value="<?php echo $result['TName'];?>"/></td> 
-						  <td><input type="text" id="Price" name="Price" value="<?php echo $result['Price'];?>"/></td> 
-						  <td><input type="text" id="Description" name="Description" value="<?php echo $result['Description'];?>"/></td> 
-						  <td><input type="text" id="Name" name="Name" value="<?php echo $result['Name'];?>"/></td> 
-						  <td><input type="text" id="Address" name="Address" value="<?php echo $result['Address'];?>"/></td> 
-						  <td><input type="text" id="Phone" name="Phone" value="<?php echo $result['Phone'];?>"/></td> 
+						  <td><input type="text" id="book_name" name="book_name" value="<?php echo $result['book_name'];?>"/></td> 
+						  <td><input type="text" id="price" name="price" value="<?php echo $result['price'];?>"/></td> 
+						  <td><input type="text" id="description" name="description" value="<?php echo $result['description'];?>"/></td> 
+						  <td><input type="text" id="name" name="name" value="<?php echo $result['name'];?>"/></td> 
+						  <td><input type="text" id="address" name="address" value="<?php echo $result['address'];?>"/></td> 
+						  <td><input type="text" id="phone" name="phone" value="<?php echo $result['phone'];?>"/></td> 
 						</tr> 
 				<?php
 						}
@@ -229,7 +232,7 @@
 						  $keyword = '%'.$keyword.'%';
 						}
 						
-						$sql = "SELECT t.ToyID,t.Name TName,t.Price,t.Description,ts.Name,ts.Address,ts.Phone FROM `toy` t left join `toysupplier` ts on t.ToyID = ts.ToyID where t.Name like ? or t.Price like ? or t.Description like ? or ts.Name like ? or ts.Address like ? or ts.Phone like ?";
+						$sql = "SELECT * FROM `books` t left join `bookstores` ts on t.bookstore_id = ts.id where t.book_name like ? or t.price like ? or t.description like ? or ts.name like ? or t.type like ? or ts.Phone like ? or ts.address like ?";
 						if($stmt = $db->prepare($sql)){
 						$stmt->execute(array($keyword, $keyword, $keyword, $keyword, $keyword, $keyword));
 						
@@ -238,19 +241,19 @@
 							<tr> 
 							  <th scope="row"><?php echo $count;?></th> 
 							  <td>
-								<a onclick="ChangeContent('<?php echo $rows[$count]['ToyID'];?>');"><?php echo $rows[$count]['TName'];?></a>
+								<a onclick="ChangeContent('<?php echo $rows[$count]['id'];?>');"><?php echo $rows[$count]['name'];?></a>
 							  </td> 
-							  <td><?php echo $rows[$count]['Price'];?></td> 
-							  <td><?php echo $rows[$count]['Description'];?></td> 
-						      <td><?php echo $rows[$count]['Name'];?></td> 
-						      <td><?php echo $rows[$count]['Address'];?></td> 
-						      <td><?php echo $rows[$count]['Phone'];?></td> 
+							  <td><?php echo $rows[$count]['price'];?></td> 
+							  <td><?php echo $rows[$count]['description'];?></td> 
+						      <td><?php echo $rows[$count]['book_name'];?></td> 
+						      <td><?php echo $rows[$count]['address'];?></td> 
+						      <td><?php echo $rows[$count]['phone'];?></td> 
 						    </tr> 
 				<?php
 						}			
 						}
 					}else{
-						$sql = "SELECT t.ToyID,t.Name TName,t.Price,t.Description,ts.Name,ts.Address,ts.Phone FROM `toy` t left join `toysupplier` ts on t.ToyID = ts.ToyID";
+						$sql = "SELECT * FROM `books` t left join `bookstores` ts on t.bookstore_id = ts.id";
 					if($stmt = $db->prepare($sql)){
 						$stmt->execute();
 						
@@ -260,13 +263,13 @@
 						<tr> 
 						  <th scope="row"><?php echo $count;?></th> 
 						  <td>
-							<a onclick="ChangeContent('<?php echo $rows[$count]['ToyID'];?>');"><?php echo $rows[$count]['TName'];?></a>
+							<a onclick="ChangeContent('<?php echo $rows[$count]['id'];?>');"><?php echo $rows[$count]['name'];?></a>
 						  </td> 
-						  <td><?php echo $rows[$count]['Price'];?></td> 
-						  <td><?php echo $rows[$count]['Description'];?></td> 
-						  <td><?php echo $rows[$count]['Name'];?></td> 
-						  <td><?php echo $rows[$count]['Address'];?></td> 
-						  <td><?php echo $rows[$count]['Phone'];?></td> 
+						  <td><?php echo $rows[$count]['price'];?></td> 
+						  <td><?php echo $rows[$count]['description'];?></td> 
+						  <td><?php echo $rows[$count]['book_name'];?></td> 
+						  <td><?php echo $rows[$count]['address'];?></td> 
+						  <td><?php echo $rows[$count]['phone'];?></td> 
 						</tr> 
 				<?php
 						}
