@@ -100,9 +100,13 @@
   </div>
 </nav>
 <div class="content">
+<div class="content">
 	<div class="inner_content">
+	<form action = "bookstore_add.php" method = "get">
+		<table class="table"> 
+		<input type = "submit" value="新增">
 		<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
-			總數量為: 
+				總數量為: 
 			<?php
 				$sql = "SELECT COUNT(*) FROM bookstores";
 				$stmt =  $db->prepare($sql);
@@ -112,7 +116,6 @@
 					echo $rowcount;
 			?>
 		</div>
-		<table class="table"> 
 		  <thead> 
 			<tr> 
 			  <th>#</th> 
@@ -126,33 +129,28 @@
 		  </thead> 
 		  <tbody> 
 			<?php
-				if (isset($_POST["keyword"]))
-				{
-					
-				}else{
-					$sql = "SELECT t.id,t.name TName,t.address,t.phone,t.business_hour,t.img_url FROM `bookstores` t";
-					if($stmt = $db->prepare($sql)){
-						$stmt->execute();
-						
-						
-						for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
+				$sql = "SELECT t.id,t.name TName,t.address,t.phone,t.business_hour,t.img_url FROM `bookstores` t";
+				if($stmt = $db->prepare($sql)){
+					$stmt->execute();
+					for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 			?>
 					<tr> 
 					  <th scope="row"><?php echo $count;?></th> 
                       <td><?php echo $rows[$count]['id'];?></td> 
-					  <td><a href="../content/book.php?id=<?php echo $rows[$count]['id'];?>"><?php echo $rows[$count]['TName'];?></a></td> 
+					  <td><a href="http://localhost/BookStoreManageSystem/frontend/content/book.php?id=<?php echo $rows[$count]['id'];?>"><?php echo $rows[$count]['TName'];?></a></td> 
 					  <td><?php echo $rows[$count]['address'];?></td> 
 					  <td><?php echo $rows[$count]['phone'];?></td> 
 					  <td><?php echo $rows[$count]['business_hour'];?></td> 
                       <td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
 					</tr> 
 			<?php
-						}
+						
 					}
 				}
 			?>
 		  </tbody> 
 		</table>
+		</form>
 	</div>
 </div>
 </div>
