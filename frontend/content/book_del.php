@@ -145,7 +145,7 @@
 		<div class="navbar-nav">
 		<a class="nav-item nav-link " href="../index.php">首頁 </a>
 		<a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
-		<a class="nav-item nav-link active" href="book.php?id=<?php echo $_GET{"id"}; ?>">編輯書庫<span class="sr-only">(current)</span></a>
+		<a class="nav-item nav-link active" href="book.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">編輯書庫<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	</nav>
@@ -153,7 +153,7 @@
 			<div class="inner_content">
 			<tr class="menu_search">
 						<td>
-							<form method="post" action="book_del.php?id=<?php echo $_GET["id"] ?>">
+							<form method="post" action="book_del.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">
 								<tr>
 									<td>Search</td>
 									<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
@@ -165,11 +165,11 @@
 			<table>
 					
 					
-							
+			<form action="book_delsave.php?bookstore_id=<?php echo $_GET["bookstore_id"]?>" method="post">
 								<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 									總數量為: 
 									<?php
-										$id = $_GET['id'];
+										$id = $_GET['bookstore_id'];
 										
 										$sql = "SELECT COUNT(*) FROM books WHERE bookstore_id = ?";
 										$stmt =  $db->prepare($sql);
@@ -182,7 +182,7 @@
 								</div>
 								
 								<table class="table">
-								<form action="book_delsave.php?bookstore_id=<?php echo $_GET["id"]?>" method="post"
+								
 									<thead> 
 										<tr> 
 										<th><input type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
@@ -206,7 +206,7 @@
 												}else{
 													$keyword = '%'.$keyword.'%';
 												}
-												$id = $_GET['id'];
+												$id = $_GET['bookstore_id'];
 												$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books where id like ? or book_name like ? or type like ? and bookstore_id=?";
 												if($stmt = $db->prepare($sql)){
 													$stmt->execute(array($keyword, $keyword, $keyword, $id));
@@ -221,12 +221,13 @@
 														<td><?php echo $rows[$count]['description'];?></td> 
 														<td><?php echo $rows[$count]['type'];?></td> 
 														<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
+														<td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td>
 													</tr> 
 											<?php
 												}		
 											}
 												}else{
-													$id = $_GET['id'];
+													$id = $_GET['bookstore_id'];
 													$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";
 													if($stmt = $db->prepare($sql)){
 														$stmt->execute(array($id));
@@ -249,9 +250,9 @@
 												}
 											?>
 										</tbody> 
-									</form>
+									
 								</table>
-							
+								</form>
 					
 			</table>
 			</div>

@@ -1,6 +1,6 @@
 <?php
   include("../function/condb.php");
-	$book_store = $_GET["id"];
+	$book_store = $_GET["bookstore_id"];
   $book_Price = $_GET["book_Price"];
   $book_Amount= $_GET["book_Amount"];
   $book_Name = $_GET["book_Name"];
@@ -15,8 +15,8 @@
       # code...
       $bookPrice=$book_Price[$i];
       $bookAmount=$book_Amount[$i];
-      $bookName=$book_Name[$i];
-      $bookDescription=$book_Description[$i];
+      $bookName=$book_Name[$i];$bookName=str_replace("\"","&quot;",$bookName);
+      $bookDescription=$book_Description[$i];$bookDescription=str_replace("\"","&quot;",$bookDescription);
       $bookType=$book_Type[$i];
       $imgurl=$img_url[$i];
       
@@ -29,7 +29,7 @@
     }
     else{
       $id = $db->lastInsertId();
-      $redirect_php="book.php?id=".$book_store;
+      $redirect_php="book.php?bookstore_id=".$book_store;
       header("Location:$redirect_php");
     }
 

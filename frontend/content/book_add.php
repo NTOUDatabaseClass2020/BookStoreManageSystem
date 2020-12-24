@@ -151,7 +151,7 @@ function delrow()
     <div class="navbar-nav">
       <a class="nav-item nav-link " href="../index.php">首頁 </a>
       <a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
-	  <a class="nav-item nav-link active" href="book.php?id=<?php echo $_GET["id"]?>">編輯書店<span class="sr-only">(current)</span></a>
+	  <a class="nav-item nav-link active" href="book.php?bookstore_id=<?php echo $_GET["bookstore_id"]?>">編輯書店<span class="sr-only">(current)</span></a>
 	</div>
   </div>
 </nav>
@@ -160,7 +160,7 @@ function delrow()
 		<div class="inner_content">
 			<input type="button" id="add_button" name="add_button" onclick="addrow('add_file_button')" value="增加附加欄位">
 			<input type="button" id="add_button" name="add_button" onclick="delrow()" value="減少附加欄位">
-			<button type="submit" name="id" value="<?php echo $_GET["id"]?>" >點我新增</button>
+			<button type="submit" name="bookstore_id" value="<?php echo $_GET["bookstore_id"]?>" >點我新增</button>
 			<table class="table" >
 			  <thead>
 				<tr> 

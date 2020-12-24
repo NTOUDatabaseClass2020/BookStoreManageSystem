@@ -151,7 +151,7 @@
 	</table>
 		<tr class="menu_search">
 			<td>
-				<form method="post" action="book.php?id=<?php echo $_GET["id"] ?>">
+				<form method="post" action="book.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">
 					<tr>
 						<td>Search</td>
 						<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
@@ -163,7 +163,7 @@
 		<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 			總數量為: 
 			<?php
-				$id = $_GET['id'];
+				$id = $_GET['bookstore_id'];
 				
 				$sql = "SELECT COUNT(*) FROM books WHERE bookstore_id = ?";
 				$stmt =  $db->prepare($sql);
@@ -172,9 +172,9 @@
 				if($rowcount = $stmt->fetchColumn())
 					echo $rowcount;
 			?>
-			<button class="btn btn-default"><a href="./book_add.php?id=<?php echo $_GET["id"]; ?>">新增</a></button>
-			<button class="btn btn-default"><a href="./book_del.php?id=<?php echo $_GET["id"]; ?>">刪除</a></button>
-			<button class="btn btn-default"><a href="./book_edit.php?id=<?php echo $_GET["id"]; ?>">修改</a></button>
+			<button class="btn btn-default"><a href="./book_add.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">新增</a></button>
+			<button class="btn btn-default"><a href="./book_del.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">刪除</a></button>
+			<button class="btn btn-default"><a href="./book_edit.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">修改</a></button>
 		</div>
 		<table class="table"> 
 		  <thead> 
@@ -200,7 +200,7 @@
 					  }else{
 						$keyword = '%'.$keyword.'%';
 					  }
-					  $id = $_GET['id'];
+					  $id = $_GET['bookstore_id'];
 					  $sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books where id like ? or book_name like ? or type like ? and bookstore_id=?";
 					  if($stmt = $db->prepare($sql)){
 						  $stmt->execute(array($keyword, $keyword, $keyword, $id));
@@ -220,7 +220,7 @@
 						  }		
 					  }
 				}else{
-					$id = $_GET['id'];
+					$id = $_GET['bookstore_id'];
 					$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";
 					if($stmt = $db->prepare($sql)){
 						$stmt->execute(array($id));
