@@ -109,6 +109,12 @@
 	form {
 		margin-bottom: 0em;
 	}
+
+	#search_icon{
+		/* width: auto; */
+		height: 30px;
+		border: #f1f1f1;
+	}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -124,36 +130,6 @@
 	  );
 	  slider.startAuto();
 	});
-  </script>
-  <script>
-	//   function ChangeContent(ToyID){
-	// 	document.getElementById("ToyID").value = ToyID;
-	// 	document.getElementById("mfrom").action = "toy_edit.php";
-	// 	document.getElementById("mfrom").submit();
-	// }
-	
-	// function UpdateContent(){
-	// 	document.getElementById("ToyID").value = document.getElementById("ToyID").value;
-	// 	document.getElementById("TName").value = document.getElementById("TName").value;
-	// 	document.getElementById("Price").value = document.getElementById("Price").value;
-	// 	document.getElementById("Description").value = document.getElementById("Description").value;
-	// 	document.getElementById("Name").value = document.getElementById("Name").value;
-	// 	document.getElementById("Address").value = document.getElementById("Address").value;
-	// 	document.getElementById("Phone").value = document.getElementById("Phone").value;
-	// 	document.getElementById("mfrom").action = "toy_mdysave.php";
-	// 	document.getElementById("mfrom").submit();
-	// }
-	
-	// function DeleteContent(){
-	// 	document.getElementById("ToyID").value = document.getElementById("ToyID").value;
-	// 	document.getElementById("mfrom").action = "toy_delsave.php";
-	// 	document.getElementById("mfrom").submit();
-	// }
-	
-	// function InsertContent(){
-	// 	document.getElementById("mfrom").action = "book_add.php";
-	// 	document.getElementById("mfrom").submit();
-	// }
   </script>
 </head>
 
@@ -172,7 +148,18 @@
 </nav>
 <div class="content">
 	<div class="inner_content">
-		
+	</table>
+		<tr class="menu_search">
+			<td>
+				<form method="post" action="book.php?id=<?php echo $_GET["id"] ?>">
+					<tr>
+						<td>Search</td>
+						<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
+						<input type="submit" value="送出">
+					</tr>				  
+				</form>
+			</td>
+		</tr>
 		<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 			總數量為: 
 			<?php
@@ -198,7 +185,7 @@
 			  <th>book數量</th>
 			  <th>book名稱</th>
 			  <th>book描述</th> 
-			  <th>book種類/th> 
+			  <th>book種類</th> 
 			  <th>封面</th> 
 			  <th></th> 
 			</tr> 
@@ -207,7 +194,31 @@
 		  <?php
 				if (isset($_POST["keyword"]))
 				{
-					
+					$keyword = $_POST["keyword"];
+					if($keyword == ''){
+						$keyword = '%';
+					  }else{
+						$keyword = '%'.$keyword.'%';
+					  }
+					  $id = $_GET['id'];
+					  $sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books where id like ? or book_name like ? or type like ? and bookstore_id=?";
+					  if($stmt = $db->prepare($sql)){
+						  $stmt->execute(array($keyword, $keyword, $keyword, $id));
+						  for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
+			  ?>
+						  <tr> 
+							<th scope="row"><?php echo $count;?></th> 
+							<td><?php echo $rows[$count]['id'];?></td> 
+							<td><?php echo $rows[$count]['price'];?></td> 
+							<td><?php echo $rows[$count]['amount'];?></td> 
+							<td><?php echo $rows[$count]['book_name'];?></td> 
+							<td><?php echo $rows[$count]['description'];?></td> 
+							<td><?php echo $rows[$count]['type'];?></td> 
+							<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
+						  </tr> 
+			  <?php
+						  }		
+					  }
 				}else{
 					$id = $_GET['id'];
 					$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";

@@ -149,71 +149,112 @@
 		</div>
 	</div>
 	</nav>
-	<form action="book_delsave.php?bookstore_id=<?php echo $_GET["id"]?>" method="post">
-		<div class="content">
+			<div class="content">
 			<div class="inner_content">
-				
-				<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
-					總數量為: 
-					<?php
-						$id = $_GET['id'];
-						
-						$sql = "SELECT COUNT(*) FROM books WHERE bookstore_id = ?";
-						$stmt =  $db->prepare($sql);
-						$error = $stmt->execute(array($id));
-						
-						if($rowcount = $stmt->fetchColumn())
-							echo $rowcount;
-					?>
-					<!-- <button class="btn btn-default"><a href="./book_add.php?id=<?php echo $_GET["id"]; ?>">新增</a></button> -->
-					<button type="submit" name="id" >點我刪除</button>
-				</div>
-				<table class="table"> 
-				<thead> 
-					<tr> 
-					<th><input type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
-					<th>id</th> 
-					<th>book價錢</th> 
-					<th>book數量</th>
-					<th>book名稱</th>
-					<th>book描述</th> 
-					<th>book種類/th> 
-					<th>封面</th> 
-					<th></th> 
-					</tr> 
-				</thead> 
-				<tbody> 
-				<?php
-						if (isset($_POST["keyword"]))
-						{
+			<tr class="menu_search">
+						<td>
+							<form method="post" action="book_del.php?id=<?php echo $_GET["id"] ?>">
+								<tr>
+									<td>Search</td>
+									<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
+									<td><input type="submit" value="送出"></td>
+								</tr>				  
+							</form>
+						</td>
+					</tr>
+			<table>
+					
+					
 							
-						}else{
-							$id = $_GET['id'];
-							$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";
-							if($stmt = $db->prepare($sql)){
-								$stmt->execute(array($id));
+								<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
+									總數量為: 
+									<?php
+										$id = $_GET['id'];
+										
+										$sql = "SELECT COUNT(*) FROM books WHERE bookstore_id = ?";
+										$stmt =  $db->prepare($sql);
+										$error = $stmt->execute(array($id));
+										
+										if($rowcount = $stmt->fetchColumn())
+											echo $rowcount;
+									?>
+									<button type="submit" name="id" >點我刪除</button>
+								</div>
 								
-								for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
-					?>
-							<tr> 
-							<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
-							<td><?php echo $rows[$count]['id'];?></td> 
-							<td><?php echo $rows[$count]['price'];?></a></td> 
-							<td><?php echo $rows[$count]['amount'];?></td> 
-							<td><?php echo $rows[$count]['book_name'];?></td> 
-							<td><?php echo $rows[$count]['description'];?></td> 
-							<td><?php echo $rows[$count]['type'];?></td> 
-							<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
-							</tr> 
-					<?php
-								}
-							}
-						}
-					?>
-				</tbody> 
-				</table>
+								<table class="table">
+								<form action="book_delsave.php?bookstore_id=<?php echo $_GET["id"]?>" method="post"
+									<thead> 
+										<tr> 
+										<th><input type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
+										<th>id</th> 
+										<th>book價錢</th> 
+										<th>book數量</th>
+										<th>book名稱</th>
+										<th>book描述</th> 
+										<th>book種類/th> 
+										<th>封面</th> 
+										<th></th> 
+										</tr> 
+									</thead> 
+										<tbody> 
+											<?php
+													if (isset($_POST["keyword"]))
+													{
+														$keyword = $_POST["keyword"];
+												if($keyword == ''){
+													$keyword = '%';
+												}else{
+													$keyword = '%'.$keyword.'%';
+												}
+												$id = $_GET['id'];
+												$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books where id like ? or book_name like ? or type like ? and bookstore_id=?";
+												if($stmt = $db->prepare($sql)){
+													$stmt->execute(array($keyword, $keyword, $keyword, $id));
+													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
+											?>
+													<tr> 
+														<th scope="row"><?php echo $count;?></th> 
+														<td><?php echo $rows[$count]['id'];?></td> 
+														<td><?php echo $rows[$count]['price'];?></td> 
+														<td><?php echo $rows[$count]['amount'];?></td> 
+														<td><?php echo $rows[$count]['book_name'];?></td> 
+														<td><?php echo $rows[$count]['description'];?></td> 
+														<td><?php echo $rows[$count]['type'];?></td> 
+														<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
+													</tr> 
+											<?php
+												}		
+											}
+												}else{
+													$id = $_GET['id'];
+													$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";
+													if($stmt = $db->prepare($sql)){
+														$stmt->execute(array($id));
+														
+														for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
+											?>
+													<tr> 
+													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
+													<td><?php echo $rows[$count]['id'];?></td> 
+													<td><?php echo $rows[$count]['price'];?></a></td> 
+													<td><?php echo $rows[$count]['amount'];?></td> 
+													<td><?php echo $rows[$count]['book_name'];?></td> 
+													<td><?php echo $rows[$count]['description'];?></td> 
+													<td><?php echo $rows[$count]['type'];?></td> 
+													<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
+													</tr> 
+											<?php
+														}
+													}
+												}
+											?>
+										</tbody> 
+									</form>
+								</table>
+							
+					
+			</table>
 			</div>
-		</div>
-	</form>
+			</div>
 	</body>
 	</html>

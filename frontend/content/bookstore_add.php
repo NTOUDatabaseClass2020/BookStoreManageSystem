@@ -136,7 +136,7 @@
 			  <thead>
 				<tr> 
 				  <th>#</th> 
-				  <th>ID</th> 
+				  <!-- <th>ID</th>  -->
 				  <th>書店名稱</th> 
 				  <th>地址</th> 
 				  <th>電話</th> 
@@ -147,7 +147,7 @@
 			  <tbody>
 					<tr> 
 					  <td><input type="submit" name ="submit" value= "新增">
-					  <td><input type="text" id="id" name="id" value=""/></td> 
+					  <!-- <td><input type="text" id="id" name="id" value=""/></td>  -->
 					  <td><input type="text" id="name" name="name" value=""/></td> 
 					  <td><input type="text" id="address" name="address" value=""/></td> 
 					  <td><input type="text" id="phone" name="phone" value=""/></td> 

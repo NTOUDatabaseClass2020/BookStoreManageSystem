@@ -149,10 +149,20 @@
 		</div>
 	</div>
 	</nav>
-	<form action="book_editsave.php?bookstore_id=<?php echo $_GET["id"]?>" method="post" enctype="multipart/form-data">
+	
 		<div class="content">
 			<div class="inner_content">
-				
+			<tr class="menu_search">
+						<td>
+							<form method="post" action="book_edit.php?id=<?php echo $_GET["id"] ?>">
+								<tr>
+									<td>Search</td>
+									<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
+									<td><input type="submit" value="送出"></td>
+								</tr>				  
+							</form>
+						</td>
+					</tr>
 				<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 					總數量為: 
 					<?php
@@ -182,10 +192,37 @@
 					</tr> 
 				</thead> 
 				<tbody> 
+				<form action="book_editsave.php?bookstore_id=<?php echo $_GET["id"]?>" method="post" enctype="multipart/form-data">
 				<?php
 						if (isset($_POST["keyword"]))
 						{
 							#CODE...
+							$keyword = $_POST["keyword"];
+												if($keyword == ''){
+													$keyword = '%';
+												}else{
+													$keyword = '%'.$keyword.'%';
+												}
+												$id = $_GET['id'];
+												$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books where id like ? or book_name like ? or type like ? and bookstore_id=?";
+												if($stmt = $db->prepare($sql)){
+													$stmt->execute(array($keyword, $keyword, $keyword, $id));
+													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
+											?>
+													<tr> 
+													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
+													<td><?php echo $rows[$count]['id'];?></td> 
+													<td><input type="text" name="book_Price[]" id="" value="<?php echo $rows[$count]['price'];?>" placeholder="<?php echo $rows[$count]['price'];?>"></td> 
+													<td><input type="text" name="book_Amount[]" id="" value="<?php echo $rows[$count]['amount'];?>" placeholder="<?php echo $rows[$count]['amount'];?>"></td> 
+													<td><input type="text" name="book_Name[]" id="" value="<?php echo $rows[$count]['book_name'];?>" placeholder="<?php echo $rows[$count]['book_name'];?>"></td> 
+													<td><input type="text" name="book_Description[]" id="<?php echo $rows[$count]['description'];?>" value="" placeholder="<?php echo $rows[$count]['description'];?>"></td> 
+													<td><input type="text" name="book_Type[]" id="" value="<?php echo $rows[$count]['type'];?>" placeholder="<?php echo $rows[$count]['type'];?>"></td> 
+													<td><input type="text" name="img_url[]" id="" value="<?php echo $rows[$count]['img_url'];?>" placeholder="<?php echo $rows[$count]['img_url'];?>"></td> 
+													</tr> 
+											<?php
+												}		
+											}
+							
 						}else{
 							$id = $_GET['id'];
 							$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";
@@ -209,10 +246,11 @@
 							}
 						}
 					?>
+					</form>
 				</tbody> 
 				</table>
 			</div>
 		</div>
-	</form>
+	
 	</body>
 	</html>
