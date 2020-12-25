@@ -19,46 +19,71 @@
       $bookDescription=$book_Description[$i];$bookDescription=str_replace("\"","&quot;",$bookDescription);
       $bookType=$book_Type[$i];
       $imgurl=$img_url[$i];
-      if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType))
-      {try {
-        //code...
-        $success = $stmt->execute(array($book_store, $bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl));
-        if (!$success) {
-          throw new Exception("Error Processing Request", 1);
-          
-          echo "失敗!".$stmt->errorInfo();
-          $redirect_php="book_add.php?bookstore_id=".$book_store;
-          $time=5;
-          header("Refresh:$time;$redirect_php");
-        }
-        else{
-          $id = $db->lastInsertId();
-          $redirect_php="book_add.php?bookstore_id=".$book_store;
-          $time=5;
-          header("Refresh:$time;$redirect_php");
-        }
-      } catch (Exception $th) {
-        //throw $th;
-        echo $th;
-        $redirect_php="book_add.php?bookstore_id=".$bookstore;
-        $time=5;
-        header("Refresh:$time;$redirect_php");
-
-      }
-        
-        
-      }
-      
-      else
+      if(!empty($imgurl))
+      {
+        if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType) && @fopen( $imgurl, 'r' ))
+        {
+          try 
+          {
+            //code...
+            $success = $stmt->execute(array($book_store, $bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl));
+            if (!$success) 
             {
-              $id = $db->lastInsertId();
-              echo "失敗! 輸入不對!! 請檢察輸入!!".$stmt->errorInfo();
+              throw new Exception("Error Processing Request", 1);
+              
+              echo "失敗!".$stmt->errorInfo();
               $redirect_php="book_add.php?bookstore_id=".$book_store;
               $time=5;
-              
               header("Refresh:$time;$redirect_php");
-              break;
             }
+            else{
+              $id = $db->lastInsertId();
+              $redirect_php="book_add.php?bookstore_id=".$book_store;
+              $time=5;
+              header("Refresh:$time;$redirect_php");
+            }
+          } catch (Exception $th) 
+          {
+            //throw $th;
+            echo $th;
+            $redirect_php="book_add.php?bookstore_id=".$bookstore;
+            $time=5;
+            header("Refresh:$time;$redirect_php");
+
+          }
+        }
+        
+      }
+      else if (empty($imgurl)) {
+        # code...
+        if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType))
+        {
+          $success = $stmt->execute(array($book_store, $bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,NULL));
+          if (!$success) {
+            # code...
+            $id = $db->lastInsertId();
+            echo "失敗! 輸入不對!! 請檢察輸入!!".$stmt->errorInfo();
+            $redirect_php="book_add.php?bookstore_id=".$book_store;
+            $time=5;
+            
+            header("Refresh:$time;$redirect_php");
+            break;
+          }
+          else {
+            
+            continue;
+          }
+        }
+       
+      }
+      else
+      {
+        echo "失敗! 輸入不對!! 請檢察輸入".$stmt->errorInfo();
+        $redirect_php="book_edit.php?bookstore_id=".$book_store;
+        $time=5;
+        header("Refresh:$time;$redirect_php;");
+        break;
+      }
     }
     
     if (!$success) {

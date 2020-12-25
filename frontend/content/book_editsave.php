@@ -27,39 +27,7 @@
             $bookDescription=$book_Description[$i];$bookDescription=str_replace("\"","&quot;",$bookDescription);
             $bookType=$book_Type[$i];
             $imgurl=$img_url[$i];
-            if (!is_null($imgurl)) {
-                # code...
-                if(@fopen( $imgurl, 'r' )){
-                    if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType))
-                    {
-                        $success = $stmt->execute(array($bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl,$bookstore,$bookid));
-                        if (!$success) {
-                            echo "失敗!".$stmt->errorInfo();
-                          }
-                          else{
-                            continue;
-                          }
-                    }
-                    else
-                    {
-                        echo "失敗! 輸入不對!! 請檢察輸入".$stmt->errorInfo();
-                        $redirect_php="book_edit.php?bookstore_id=".$bookstore;
-                        $time=5;
-                        header("Refresh:$time;$redirect_php;");
-                        break;
-                    }
-                }
-                else {
-                    # code...
-                    echo "失敗! 輸入不對!! 請檢察輸入".$stmt->errorInfo();
-                    $redirect_php="book_edit.php?bookstore_id=".$bookstore;
-                    $time=5;
-                    header("Refresh:$time;$redirect_php;");
-                    break;
-                }
-                
-            }
-            else {
+            if (empty($imgurl)) {
                 # code...
                 if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType))
                 {
@@ -78,6 +46,29 @@
                     $time=5;
                     header("Refresh:$time;$redirect_php;");
                     break;
+                }
+                
+                
+            }
+            else {
+                # code...
+                  if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType) & @fopen( $imgurl, 'r' ))
+                  {
+                      $success = $stmt->execute(array($bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl,$bookstore,$bookid));
+                      if (!$success) {
+                          echo "失敗!".$stmt->errorInfo();
+                        }
+                        else{
+                          continue;
+                        }
+                  }
+                  else
+                  {
+                      echo "失敗! 輸入不對!! 請檢察輸入".$stmt->errorInfo();
+                      $redirect_php="book_edit.php?bookstore_id=".$bookstore;
+                      $time=5;
+                      header("Refresh:$time;$redirect_php;");
+                      break;
                 }
             }
           }
