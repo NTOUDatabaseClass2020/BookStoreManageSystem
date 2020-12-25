@@ -19,11 +19,20 @@
       $bookDescription=$book_Description[$i];$bookDescription=str_replace("\"","&quot;",$bookDescription);
       $bookType=$book_Type[$i];
       $imgurl=$img_url[$i];
-      
+      if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType))
       $success = $stmt->execute(array($book_store, $bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl));
+      else
+            {
+              $id = $db->lastInsertId();
+              echo "失敗! 輸入不對!! 請檢察輸入!!".$stmt->errorInfo();
+              $redirect_php="book_add.php?bookstore_id=".$bookstore;
+              $time=5;
+              
+              header("Refresh:$time;$redirect_php");
+              break;
+            }
     }
     
-    // $success = $stmt->execute(array($book_store, $book_Price, $book_Amount,$book_Name,$book_Description,$book_Type,$img_url));
     if (!$success) {
       echo "儲存失敗!".$stmt->errorInfo();
     }
