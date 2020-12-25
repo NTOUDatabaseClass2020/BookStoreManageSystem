@@ -27,18 +27,23 @@
           throw new Exception("Error Processing Request", 1);
           
           echo "失敗!".$stmt->errorInfo();
-          $redirect_php="book_add.php?bookstore_id=".$bookstore;
+          $redirect_php="book_add.php?bookstore_id=".$book_store;
           $time=5;
           header("Refresh:$time;$redirect_php");
         }
         else{
           $id = $db->lastInsertId();
-          $redirect_php="book.php?bookstore_id=".$book_store;
-          header("Location:$redirect_php");
+          $redirect_php="book_add.php?bookstore_id=".$book_store;
+          $time=5;
+          header("Refresh:$time;$redirect_php");
         }
       } catch (Exception $th) {
         //throw $th;
         echo $th;
+        $redirect_php="book_add.php?bookstore_id=".$bookstore;
+        $time=5;
+        header("Refresh:$time;$redirect_php");
+
       }
         
         
@@ -48,7 +53,7 @@
             {
               $id = $db->lastInsertId();
               echo "失敗! 輸入不對!! 請檢察輸入!!".$stmt->errorInfo();
-              $redirect_php="book_add.php?bookstore_id=".$bookstore;
+              $redirect_php="book_add.php?bookstore_id=".$book_store;
               $time=5;
               
               header("Refresh:$time;$redirect_php");
@@ -58,7 +63,7 @@
     
     if (!$success) {
       echo "儲存失敗!".$stmt->errorInfo();
-      $redirect_php="book_add.php?bookstore_id=".$bookstore;
+      $redirect_php="book_add.php?bookstore_id=".$book_store;
       $time=5;
       header("Refresh:$time;$redirect_php");
     }
