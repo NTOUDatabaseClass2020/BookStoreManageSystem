@@ -144,7 +144,7 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 		<a class="nav-item nav-link " href="../index.php">首頁 </a>
-		<a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
+		<a class="nav-item nav-link active" href="bookstore.php">返回書店<span class="sr-only">(current)</span></a>
 		<a class="nav-item nav-link active" href="book.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">編輯書庫<span class="sr-only">(current)</span></a>
 		</div>
 	</div>

@@ -144,7 +144,7 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 		<a class="nav-item nav-link " href="../index.php">首頁 </a>
-		<a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
+		<a class="nav-item nav-link active" href="bookstore.php">返回書店<span class="sr-only">(current)</span></a>
 		<a class="nav-item nav-link active" href="book.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">編輯書庫<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
@@ -188,7 +188,8 @@
 					<th>book數量</th>
 					<th>book名稱</th>
 					<th>book描述</th> 
-					<th>book種類/th> 
+					<th>book種類編號</th> 
+					<th>目前book種類名稱</th>
 					<th>封面</th> 
 					<th></th> 
 					</tr> 
@@ -206,9 +207,9 @@
 													$keyword = '%'.$keyword.'%';
 												}
 												$id = $_GET['bookstore_id'];
-												$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books where book_name like ? or type like ? and bookstore_id=?";
-												if($stmt = $db->prepare($sql)){
-													$stmt->execute(array($keyword, $keyword, $id));
+												$sql = "SELECT bs.id,bs.price,bs.amount,bs.book_name,bs.description,bs.type,bs.img_url,btl.type_name FROM books bs left join booktype_list btl on bs.type = btl.type where bs.id like ? or bs.book_name like ? or bs.type like ? or btl.type_name like ? and bookstore_id=? ORDER BY bs.id ASC";
+													if($stmt = $db->prepare($sql)){
+													$stmt->execute(array($keyword, $keyword, $keyword, $keyword, $id));
 													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr>
@@ -218,7 +219,8 @@
 													<td><input type="text" name="book_Amount[]" id="" value="<?php echo $rows[$count]['amount'];?>" placeholder="<?php echo $rows[$count]['amount'];?>"></td> 
 													<td><input type="text" name="book_Name[]" id="" value="<?php echo $rows[$count]['book_name'];?>" placeholder="<?php echo $rows[$count]['book_name'];?>"></td> 
 													<td><input type="text" name="book_Description[]" id="<?php echo $rows[$count]['description'];?>" value="" placeholder="<?php echo $rows[$count]['description'];?>"></td> 
-													<td><input type="text" name="book_Type[]" id="" value="<?php echo $rows[$count]['type'];?>" placeholder="<?php echo $rows[$count]['type'];?>"></td> 
+													<td><input type="text" name="book_Type[]" id="" value="<?php echo $rows[$count]['type'];?>" placeholder="<?php echo $rows[$count]['type'];?>"></td>
+													<td><?php echo $rows[$count]['type_name'];?></td>
 													<td><input type="text" name="img_url[]" id="" value="<?php echo $rows[$count]['img_url'];?>" placeholder="<?php echo $rows[$count]['img_url'];?>"></td> 
 													<td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td>
 													</tr> 
@@ -229,7 +231,7 @@
 							
 						}else{
 							$id = $_GET['bookstore_id'];
-							$sql = "SELECT id,price,amount,book_name,description,type,img_url FROM books WHERE bookstore_id = ? ";
+							$sql = "SELECT bs.id,bs.price,bs.amount,bs.book_name,bs.description,bs.type,bs.img_url,btl.type_name  FROM books bs left join booktype_list btl on bs.type = btl.type  WHERE bookstore_id = ? ORDER BY bs.id ASC";
 							if($stmt = $db->prepare($sql)){
 								$stmt->execute(array($id));
 								
@@ -243,6 +245,7 @@
 							<td><input type="text" name="book_Name[]" id="" value="<?php echo $rows[$count]['book_name'];?>" placeholder="<?php echo $rows[$count]['book_name'];?>"></td> 
 							<td><input type="text" name="book_Description[]" value="<?php echo $rows[$count]['description'];?>" value="" placeholder="<?php echo $rows[$count]['description'];?>"></td> 
 							<td><input type="text" name="book_Type[]" id="" value="<?php echo $rows[$count]['type'];?>" placeholder="<?php echo $rows[$count]['type'];?>"></td> 
+							<td><?php echo $rows[$count]['type_name'];?></td>
 							<td><input type="text" name="img_url[]" id="" value="<?php echo $rows[$count]['img_url'];?>" placeholder="<?php echo $rows[$count]['img_url'];?>"></td> 
 							<td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td>
 						</tr> 
