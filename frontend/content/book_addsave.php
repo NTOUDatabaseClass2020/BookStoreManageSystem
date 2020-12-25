@@ -7,7 +7,7 @@
   $book_Description = $_GET["book_Description"];
   $book_Type = $_GET["book_Type"];
   $img_url = $_GET["img_url"];
- print_r(count($book_Name));
+//  print_r(count($book_Name));
   $sql = "INSERT INTO books (bookstore_id,price,amount,book_name,description,type,img_url) values (?,?,?,?,?,?,?)";
   if($stmt = $db->prepare($sql))
   {
@@ -20,7 +20,30 @@
       $bookType=$book_Type[$i];
       $imgurl=$img_url[$i];
       if(is_numeric($bookPrice)&is_numeric($bookAmount)&is_numeric($bookType))
-      $success = $stmt->execute(array($book_store, $bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl));
+      {try {
+        //code...
+        $success = $stmt->execute(array($book_store, $bookPrice, $bookAmount,$bookName,$bookDescription,$bookType,$imgurl));
+        if (!$success) {
+          throw new Exception("Error Processing Request", 1);
+          
+          echo "失敗!".$stmt->errorInfo();
+          $redirect_php="book_add.php?bookstore_id=".$bookstore;
+          $time=5;
+          header("Refresh:$time;$redirect_php");
+        }
+        else{
+          $id = $db->lastInsertId();
+          $redirect_php="book.php?bookstore_id=".$book_store;
+          header("Location:$redirect_php");
+        }
+      } catch (Exception $th) {
+        //throw $th;
+        echo $th;
+      }
+        
+        
+      }
+      
       else
             {
               $id = $db->lastInsertId();
@@ -35,6 +58,9 @@
     
     if (!$success) {
       echo "儲存失敗!".$stmt->errorInfo();
+      $redirect_php="book_add.php?bookstore_id=".$bookstore;
+      $time=5;
+      header("Refresh:$time;$redirect_php");
     }
     else{
       $id = $db->lastInsertId();

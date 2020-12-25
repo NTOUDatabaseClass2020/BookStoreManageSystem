@@ -191,7 +191,6 @@
 			  <th></th> 
 			</tr> 
 		  </thead> 
-		  console.log(<?php echo $_GET["bookstore_id"]?>);
 		  <tbody> 
 		  <?php
 				if (isset($_POST["keyword"]))
