@@ -159,11 +159,8 @@
                 if($stmt = $db->prepare($sql))
                 {
                   
-                  if(empty($selectid))
+                
                   foreach ($book as $value) 
-                  $success = $stmt->execute(array($value));
-                  else
-                  foreach ($selectid as $value) 
                   $success = $stmt->execute(array($value));
                   if (!$success) {
                     $redirect_php="book.php?bookstore_id=".$bookstore;

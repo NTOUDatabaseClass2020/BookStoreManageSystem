@@ -224,7 +224,6 @@
 														<td><?php echo $rows[$count]['type'];?></td> 
 														<td><?php echo $rows[$count]['type_name'];?></td>
 														<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
-														<!-- <td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td> -->
 													</tr> 
 											<?php
 												}		
