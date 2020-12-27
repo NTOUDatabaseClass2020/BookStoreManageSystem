@@ -214,6 +214,7 @@
 													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr> 
+													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th>
 														<th scope="row"><?php echo $count;?></th> 
 														<td><?php echo $rows[$count]['id'];?></td> 
 														<td><?php echo $rows[$count]['price'];?></td> 
@@ -223,7 +224,7 @@
 														<td><?php echo $rows[$count]['type'];?></td> 
 														<td><?php echo $rows[$count]['type_name'];?></td>
 														<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
-														<td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td>
+														<!-- <td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td> -->
 													</tr> 
 											<?php
 												}		
@@ -246,6 +247,7 @@
 													<td><?php echo $rows[$count]['type'];?></td> 
 													<td><?php echo $rows[$count]['type_name'];?></td>
 													<td><img class="bimg" src="<?php echo $rows[$count]['img_url'];?>"></img></td> 
+													
 													</tr> 
 											<?php
 														}
