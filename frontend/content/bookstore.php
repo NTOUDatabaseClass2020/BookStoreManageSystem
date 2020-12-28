@@ -137,7 +137,7 @@
 			  <th>電話</th> 
 			  <th>營業時間</th> 
 			  <th>圖片</th> 
-			  <th>功能</th>
+			  <th colspan="2">功能</th>
 			</tr> 
 		  </thead> 
 		  <tbody> 
@@ -185,7 +185,16 @@
 						  	<input type="hidden" name="id_to_delete" value="<?php echo $rows[$count]['id']; ?>">
 						  	<input type="submit" name="delete" value="Delete">
 					  	</form>
-					  </td>
+						<form action='bookstore_edit.php' method="post">
+							<input type="hidden" name="id_to_edit" value="<?php echo $rows[$count]['id']; ?>">
+							<input type="hidden" name="name_to_edit" value="<?php echo $rows[$count]['TName']; ?>">
+							<input type="hidden" name="address_to_edit" value="<?php echo $rows[$count]['address']; ?>">
+							<input type="hidden" name="phone_to_edit" value="<?php echo $rows[$count]['phone']; ?>">
+							<input type="hidden" name="business_hour_to_edit" value="<?php echo $rows[$count]['business_hour']; ?>">
+							<input type="hidden" name="img_to_edit" value="<?php echo $rows[$count]['img_url']; ?>">
+							<input type="submit" name="edit" value="Edit">
+						</form>
+						</td>
 
 
 					</tr> 
