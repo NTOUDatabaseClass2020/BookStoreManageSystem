@@ -153,8 +153,8 @@
                 include("../function/condb.php");
                 $book = $_POST["id"];
                 $bookstore = $_GET["bookstore_id"];
-                $selectid = $_POST["selectid"];
-                print_r($selectid);
+                // $selectid = $_POST["selectid"];
+                // print_r($selectid);
                 $sql = "DELETE FROM books WHERE id = ?";
                 if($stmt = $db->prepare($sql))
                 {

@@ -210,7 +210,7 @@ include("../function/condb.php");
 							$keyword = '%' . $keyword . '%';
 						}
 						$id = $_GET['bookstore_id'];
-						$sql = "SELECT bs.id,bs.price,bs.amount,bs.book_name,bs.description,bs.type,bs.img_url,btl.type_name FROM books bs left join booktype_list btl on bs.type = btl.type where (bs.id like ? or bs.book_name like ? or bs.type like ? or btl.type_name like ?) and bookstore_id=?";
+						$sql = "SELECT bs.id,bs.price,bs.amount,bs.book_name,bs.description,bs.type,bs.img_url,btl.type_name FROM books bs left join booktype_list btl on bs.type = btl.type where (bs.id like ? or bs.book_name like ? or bs.type like ? or btl.type_name like ?) and bookstore_id=? ORDER BY bs.id ASC";
 						if ($stmt = $db->prepare($sql)) {
 							$stmt->execute(array($keyword, $keyword, $keyword, $keyword, $id));
 							for ($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++) {
@@ -231,7 +231,7 @@ include("../function/condb.php");
 						}
 					} else {
 						$id = $_GET['bookstore_id'];
-						$sql = "SELECT bs.id,bs.price,bs.amount,bs.book_name,bs.description,bs.type,bs.img_url,btl.type_name  FROM books bs left join booktype_list btl on bs.type = btl.type WHERE bookstore_id = ? ";
+						$sql = "SELECT bs.id,bs.price,bs.amount,bs.book_name,bs.description,bs.type,bs.img_url,btl.type_name  FROM books bs left join booktype_list btl on bs.type = btl.type WHERE bookstore_id = ? ORDER BY bs.id ASC";
 						if ($stmt = $db->prepare($sql)) {
 							$stmt->execute(array($id));
 
