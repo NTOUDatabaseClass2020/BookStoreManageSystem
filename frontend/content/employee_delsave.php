@@ -8,7 +8,7 @@
 	}
 	a {
 		text-decoration: none;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -24,7 +24,7 @@
 	.menu a {
 		text-decoration: none;
 		color: white;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -34,7 +34,7 @@
 		width: 70%;
 		height: inherit;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -57,7 +57,7 @@
 		height: inherit;
 		white-space: nowrap;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -98,7 +98,9 @@
 		width: 100%;
 		height: 100%;
 	}
-	
+	#title {
+			margin-left: 40px;
+		}
 	input[type=text] {
 		color: black;
 	}
@@ -145,7 +147,7 @@
             <table class="table"> 
               <thead> 
                 <tr>
-                  <th>5¬í«á­«¾É¦Ü®Ñ®w­¶­±</th>
+                  <th>5ç§’å¾Œé‡å°è‡³å“¡å·¥é é¢</th>
                 </tr>
               </thead> 
               <tbody> 
@@ -166,7 +168,7 @@
                     $redirect_php="employee.php?bookstore_id=".$bookstore;
                     $time=5;
                     header("Refresh:$time;$redirect_php");
-?><tr><?php echo "§R°£¥¢±Ñ!".$stmt->errorInfo();?></tr>
+?><tr><?php echo "åˆªé™¤å¤±æ•—!".$stmt->errorInfo();?></tr>
 <?php               
                   }
                   else{

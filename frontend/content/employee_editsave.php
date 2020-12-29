@@ -8,7 +8,7 @@
 	}
 	a {
 		text-decoration: none;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -24,7 +24,7 @@
 	.menu a {
 		text-decoration: none;
 		color: white;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -34,7 +34,7 @@
 		width: 70%;
 		height: inherit;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -57,7 +57,7 @@
 		height: inherit;
 		white-space: nowrap;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -88,7 +88,9 @@
 	.inner_content table {
 		background-color: white;
 	}
-	
+	#title {
+			margin-left: 40px;
+		}
 	.bimg{
         max-width:100px;
         max-height:100px;
@@ -145,7 +147,7 @@
             <table class="table"> 
               <thead> 
                 <tr>
-                  <th>5¬í«á­«¾É¦Ü®Ñ®w­¶­±</th>
+                  <th>5ç§’å¾Œé‡å°è‡³å“¡å·¥é é¢</th>
                 </tr>
               </thead> 
               <tbody> 
@@ -178,11 +180,11 @@
             $imgurl=$img_url[$i];
             if (empty($imgurl)) {
                 # code...
-                if(is_numeric($employeename)&is_numeric($employeephone))
+                if(is_numeric($employeephone))
                 {
                     $success = $stmt->execute(array($employeename, $employeephone,$employeesalary,$employeerole,null,$bookstore,$employeeid));
                     if (!$success) {?><tr><?php
-                      ?><tr><?php echo "¥¢±Ñ!".$stmt->errorInfo();?></tr><?php 
+                      ?><tr><?php echo "å¤±æ•—!".$stmt->errorInfo();?></tr><?php 
                       }
                       else{
                         continue;
@@ -193,7 +195,7 @@
                   $redirect_php="employee_edit.php?bookstore_id=".$bookstore;
                   $time=5;
                   header("Refresh:$time;$redirect_php;");?><tr><?php
-                  ?><tr><?php echo "¥¢±Ñ! ¿é¤J¤£¹ï!! ½ĞÀË¹î¿é¤J".$stmt->errorInfo();?></tr><?php 
+                  ?><tr><?php echo "å¤±æ•—! è¼¸å…¥ä¸å°!! è«‹æª¢å¯Ÿè¼¸å…¥".$stmt->errorInfo();?></tr><?php 
                    
                     break;
                 }
@@ -202,11 +204,11 @@
             }
             else {
                 # code...
-                  if(is_numeric($employeename)&is_numeric($employeephone) & @fopen( $imgurl, 'r' ))
+                  if(is_numeric($employeephone) & @fopen( $imgurl, 'r' ))
                   {
                       $success = $stmt->execute(array($employeename, $employeephone,$employeesalary,$employeerole,$imgurl,$bookstore,$employeeid));
                       if (!$success) {
-                        ?><tr><?php echo "¥¢±Ñ!".$stmt->errorInfo();?></tr><?php 
+                        ?><tr><?php echo "å¤±æ•—!".$stmt->errorInfo();?></tr><?php 
                         }
                         else{
                           continue;
@@ -217,7 +219,7 @@
                     $redirect_php="employee_edit.php?bookstore_id=".$bookstore;
                       $time=5;
                       header("Refresh:$time;$redirect_php;");?><tr><?php
-                      ?><tr><?php echo "¥¢±Ñ! ¿é¤J¤£¹ï!! ½ĞÀË¹î¿é¤J".$stmt->errorInfo();?></tr><?php 
+                      ?><tr><?php echo "å¤±æ•—! è¼¸å…¥ä¸å°!! è«‹æª¢å¯Ÿè¼¸å…¥".$stmt->errorInfo();?></tr><?php 
                       
                       break;
                 }
@@ -229,7 +231,7 @@
       }
     }
       $id = $db->lastInsertId();
-      $redirect_php="employee_edit.php?bookstore_id=".$bookstore;
+      $redirect_php="employee.php?bookstore_id=".$bookstore;
       $time=5;
       header("Refresh:$time;$redirect_php;");
 

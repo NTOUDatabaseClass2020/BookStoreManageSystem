@@ -8,7 +8,7 @@
 	}
 	a {
 		text-decoration: none;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -24,7 +24,7 @@
 	.menu a {
 		text-decoration: none;
 		color: white;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -34,7 +34,7 @@
 		width: 70%;
 		height: inherit;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -57,7 +57,7 @@
 		height: inherit;
 		white-space: nowrap;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -145,7 +145,7 @@
             <table class="table"> 
               <thead> 
                 <tr>
-                  <th>5¬í«á­«¾É¦Ü·s¼W®Ñ®w­¶­±</th>
+                  <th>5ç§’å¾Œé‡å°è‡³æ–°å¢å“¡å·¥é é¢</th>
                 </tr>
               </thead> 
               <tbody> 
@@ -162,7 +162,7 @@
                           $sql = "INSERT INTO employees (bookstore_id,name,phone,salary,role,img_url) values (?,?,?,?,?,?)";
                           if($stmt = $db->prepare($sql))
                           {
-                            for ($i=0; $i < count($book_Name); $i++) { 
+                            for ($i=0; $i < count($employee_name); $i++) { 
                         ?>
               <tr>
                         <?php
@@ -174,7 +174,7 @@
                           $imgurl=$img_url[$i];
                           if(!empty($imgurl))
                           {
-                            if(is_numeric($employeename)&is_numeric($employeephone)&is_numeric($employeesalary) && @fopen( $imgurl, 'r' ))
+                            if(is_numeric($employeephone)&is_numeric($employeesalary) && @fopen( $imgurl, 'r' ))
                             {
                               try 
                               {
@@ -187,7 +187,7 @@
                                   $time=5;
                                   header("Refresh:$time;$redirect_php");
                         ?>
-                                <td><?php echo "¥¢±Ñ!".$stmt->errorInfo();?></td>
+                                <td><?php echo "å¤±æ•—!".$stmt->errorInfo();?></td>
                         <?php
                                   
                                 }
@@ -213,7 +213,7 @@
                           }
                           else if (empty($imgurl)) {
                             # code...
-                            if(is_numeric($employeename)&is_numeric($employeephone))
+                            if(is_numeric($employeephone))
                             {
                               $success = $stmt->execute(array($book_store, $employeename, $employeephone,$employeesalary,$employeerole,NULL));
                               if (!$success) {
@@ -223,7 +223,7 @@
                                 $time=5;
                                 header("Refresh:$time;$redirect_php");
                         ?>
-                                <td><?php echo "¥¢±Ñ! ¿é¤J¤£¹ï!! ½ĞÀË¹î¿é¤J!!".$stmt->errorInfo();?></td>
+                                <td><?php echo "å¤±æ•—! è¼¸å…¥ä¸å°!! è«‹æª¢å¯Ÿè¼¸å…¥!!".$stmt->errorInfo();?></td>
                         <?php
                                 
                                 break;
@@ -241,7 +241,7 @@
                             $time=5;
                             header("Refresh:$time;$redirect_php;");
                             break;?>
-                          <td><?php echo "¥¢±Ñ! ¿é¤J¤£¹ï!! ½ĞÀË¹î¿é¤J".$stmt->errorInfo();?></td>
+                          <td><?php echo "å¤±æ•—! è¼¸å…¥ä¸å°!! è«‹æª¢å¯Ÿè¼¸å…¥!!".$stmt->errorInfo();?></td>
                         <?php
                             
                           }
@@ -250,9 +250,9 @@
                               if (!$success) {
                                 $redirect_php="employee_add.php?bookstore_id=".$book_store;
                                 $time=5;
-                                header("Refresh:$time;$redirect_php");
+                                //header("Refresh:$time;$redirect_php");
                         ?>
-                                <td><?php echo "Àx¦s¥¢±Ñ!".$stmt->errorInfo();?></td>
+                                <td><?php echo "å„²å­˜å¤±æ•—!".$stmt->errorInfo();?></td>
                         <?php
                                 
                               }

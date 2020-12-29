@@ -11,7 +11,7 @@
 	}
 	a {
 		text-decoration: none;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -27,7 +27,7 @@
 	.menu a {
 		text-decoration: none;
 		color: white;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 	}
@@ -37,7 +37,7 @@
 		width: 70%;
 		height: inherit;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -60,7 +60,7 @@
 		height: inherit;
 		white-space: nowrap;
 		overflow: hidden;
-		font-family: ·L³n¥¿¶ÂÅé,·s²Ó©úÅé,¼Ğ·¢Åé;
+		font-family: å¾®è»Ÿæ­£é»‘é«”,æ–°ç´°æ˜é«”,æ¨™æ¥·é«”;
 		font-weight: bold;
 		font-size: 17px;
 		color: white;
@@ -81,7 +81,6 @@
 		word-wrap: break-word;
 		width: 100%;
 		top: 40px;
-		background-color: #f1f1f1;
 	}
 
 	.inner_content {
@@ -91,7 +90,9 @@
 	.inner_content table {
 		background-color: white;
 	}
-
+	#title {
+			margin-left: 40px;
+		}
 	.bimg{
 		max-width:100px;
 		max-height:100px;
@@ -143,9 +144,9 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
-		<a class="nav-item nav-link " href="../index.php">­º­¶ </a>
-		<a class="nav-item nav-link active" href="bookstore.php">ªğ¦^®Ñ©±<span class="sr-only">(current)</span></a>
-		<a class="nav-item nav-link active" href="employee.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">½s¿è®Ñ®w<span class="sr-only">(current)</span></a>
+		<a class="nav-item nav-link " href="../index.php">é¦–é  </a>
+		<a class="nav-item nav-link" href="bookstore.php">æ›¸åº—</a>
+		<a class="nav-item nav-link active" href="employee.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">å“¡å·¥</a>
 		</div>
 	</div>
 	</nav>
@@ -155,10 +156,12 @@
 						<td>
 							<form method="post" action="employee_del.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">
 								<tr>
-									<td>Search</td>
-									<td><input type="text" id="keyword" name="keyword" value="" placeholder="¿é¤J·j´MÃöÁä¦r" /></td>
-									<td><input type="submit" value="°e¥X"></td>
-								</tr>				  
+									<td>Search</td>	
+									<div class="input-group mb-3">
+										<input type="text" id="keyword" class ="form-control" name="keyword" value="" placeholder="è¼¸å…¥æœå°‹é—œéµå­—" />
+										<button class="btn btn-outline-secondary" type="submit" id="button-addon2">é€å‡º</button>
+									</div>
+								</tr>			  
 							</form>
 						</td>
 					</tr>
@@ -167,7 +170,7 @@
 					
 			<form action="employee_delsave.php?bookstore_id=<?php echo $_GET["bookstore_id"]?>" method="post">
 								<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
-									Á`¼Æ¶q¬°: 
+									ç¸½æ•¸é‡: 
 									<?php
 										$id = $_GET['bookstore_id'];
 										
@@ -178,21 +181,21 @@
 										if($rowcount = $stmt->fetchColumn())
 											echo $rowcount;
 									?>
-									<button type="submit" name="id" >ÂI§Ú§R°£</button>
+									<button class="btn btn-primary" type="submit" id="button-addon2">é€å‡º</button>
 								</div>
 								
-								<table class="table">
+								<table class="table table-bordered table-striped mt-3"> 
 								
 									<thead> 
 										<tr> 
-										<th><input type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
-										<th>id</th> 
-										<th>­û¤u¦W¦r</th>
-										<th>­û¤u¹q¸Ü</th>
-										<th>­û¤uÁ~¤ô</th>
-										<th>­û¤uÂ¾¦ì</th>
-										<th>·Ó¤ù</th>
-										<th></th> 
+										<th><input class="form-check-input" type="checkbox" name="all" onclick="check_all(this,'id[]')" /></th> 
+										
+										<th>id</th>
+										<th>å“¡å·¥åç¨±</th>
+										<th>å“¡å·¥é›»è©±</th>
+										<th>å“¡å·¥è–ªæ°´</th>
+										<th>å“¡å·¥è·ä½</th>
+										<th>ç…§ç‰‡</th>	
 										</tr> 
 									</thead> 
 										<tbody> 
@@ -212,7 +215,7 @@
 													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr> 
-													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th>
+													<th scope="row"><input class="form-check-input" type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th>
 														<th scope="row"><?php echo $count;?></th> 
 														<td><?php echo $rows[$count]['id'];?></td> 
 														<td><?php echo $rows[$count]['name'];?></td> 
@@ -226,14 +229,14 @@
 											}
 												}else{
 													$id = $_GET['bookstore_id'];
-													$sql = "SELECT bs.id,bs.name,bs.phone,bs.salary,bs.role,bs.img_url FROM employees bs  where (bs.id like ? or bs.name like ? or bs.phone like ? ) and bookstore_id=? ORDER BY bs.id ASC";
+													$sql = "SELECT bs.id,bs.name,bs.phone,bs.salary,bs.role,bs.img_url FROM employees bs  where bookstore_id=? ORDER BY bs.id ASC";
 													if($stmt = $db->prepare($sql)){
 														$stmt->execute(array($id));
 														
 														for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr> 
-													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
+													<th scope="row"><input class="form-check-input" type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
 													<td><?php echo $rows[$count]['id'];?></td> 
 													<td><?php echo $rows[$count]['name'];?></a></td> 
 													<td><?php echo $rows[$count]['phone'];?></td> 

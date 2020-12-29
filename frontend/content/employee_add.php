@@ -13,7 +13,7 @@ include("../function/condb.php");
 
 		a {
 			text-decoration: none;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
+			font-family: å¾®è»Ÿæ­£é»‘é«”, æ–°ç´°æ˜é«”, æ¨™æ¥·é«”;
 			font-weight: bold;
 			font-size: 17px;
 		}
@@ -29,7 +29,7 @@ include("../function/condb.php");
 		.menu a {
 			text-decoration: none;
 			color: white;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
+			font-family: å¾®è»Ÿæ­£é»‘é«”, æ–°ç´°æ˜é«”, æ¨™æ¥·é«”;
 			font-weight: bold;
 			font-size: 17px;
 		}
@@ -39,7 +39,7 @@ include("../function/condb.php");
 			width: 100%;
 			height: inherit;
 			overflow: hidden;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
+			font-family: å¾®è»Ÿæ­£é»‘é«”, æ–°ç´°æ˜é«”, æ¨™æ¥·é«”;
 			font-weight: bold;
 			font-size: 17px;
 			color: white;
@@ -60,7 +60,9 @@ include("../function/condb.php");
 			background-color: black;
 		}
 
-	
+		#title {
+			margin-left: 40px;
+		}
 
 		.inner_content {
 			padding: 50px 130px 220px 130px;
@@ -127,7 +129,7 @@ include("../function/condb.php");
 
 		}
 		//   $("a[id='del_file[]']").click(function(){
-		//       if (confirm('½T©w§R°£ÀÉ®×')) {
+		//       if (confirm('ï¿½Tï¿½wï¿½Rï¿½ï¿½ï¿½É®ï¿½')) {
 		//         return true;
 		//       }
 		//       return false;
@@ -143,9 +145,9 @@ include("../function/condb.php");
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link " href="../index.php">­º­¶ </a>
-				<a class="nav-item nav-link active" href="bookstore.php">ªğ¦^®Ñ©±<span class="sr-only">(current)</span></a>
-				<a class="nav-item nav-link active" href="employee.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">½s¿è®Ñ©±<span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link " href="../index.php">é¦–é  </a>
+				<a class="nav-item nav-link" href="bookstore.php">æ›¸åº—</a>
+				<a class="nav-item nav-link active" href="employee.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">å“¡å·¥</a>
 			</div>
 		</div>
 	</nav>
@@ -153,29 +155,27 @@ include("../function/condb.php");
 		<div class="content">
 			<div class="inner_content">
 				<div class="btn-group mb-3 " role="group" aria-label="Basic example">
-					<input class="btn btn-primary"  type="button" id="add_button" name="add_button" onclick="addrow('add_file_button')" value="¼W¥[ªş¥[Äæ¦ì">
-					<input class="btn btn-primary" type="button" id="add_button" name="add_button" onclick="delrow()" value="´î¤Öªş¥[Äæ¦ì">
-					<button class="btn btn-primary" type="submit" name="bookstore_id" value="<?php echo $_GET["bookstore_id"] ?>">ÂI§Ú·s¼W</button>
+					<input class="btn btn-primary"  type="button" id="add_button" name="add_button" onclick="addrow('add_file_button')" value="å¢åŠ é™„åŠ æ¬„ä½">
+					<input class="btn btn-primary" type="button" id="add_button" name="add_button" onclick="delrow()" value="æ¸›å°‘é™„åŠ æ¬„ä½">
+					<button class="btn btn-primary" type="submit" name="bookstore_id" value="<?php echo $_GET["bookstore_id"] ?>">é»æˆ‘æ–°å¢</button>
 				</div>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>­û¤u¦W¦r</th>
-							<th>­û¤u¹q¸Ü</th>
-							<th>­û¤uÁ~¤ô</th>
-							<th>­û¤uÂ¾¦ì</th>
-							<th>·Ó¤ù</th>
+						<th>å“¡å·¥åç¨±</th>
+						<th>å“¡å·¥é›»è©±</th>
+						<th>å“¡å·¥è–ªæ°´</th>
+						<th>å“¡å·¥è·ä½</th>
+						<th>ç…§ç‰‡</th>
 						</tr>
 					</thead>
 					<tbody id="add_file_button">
 						<tr id="1">
-							<th></th>
-							<td><input type="text" id="employee_name" name="employee_name[]" value="" /></td>
-							<td><input type="text" id="employee_phone" name="employee_phone[]" value="" /></td>
-							<td><input type="text" id="employee_salary" name="employee_salary[]" value="" /></td>
-							<td><input type="text" id="employee_role" name="employee_role[]" value="" /></td>
-							<td><input type="text" id="img_url" name="img_url[]" value="" /></td>
+							<td><input class="form-control" type="text" id="employee_name" name="employee_name[]" value="" /></td>
+							<td><input class="form-control" type="text" id="employee_phone" name="employee_phone[]" value="" /></td>
+							<td><input class="form-control" type="text" id="employee_salary" name="employee_salary[]" value="" /></td>
+							<td><input class="form-control" type="text" id="employee_role" name="employee_role[]" value="" /></td>
+							<td><input class="form-control" type="text" id="img_url" name="img_url[]" value="" /></td>
 						</tr>
 					</tbody>
 				</table>

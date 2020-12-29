@@ -13,13 +13,10 @@ include("../function/condb.php");
 
 		a {
 			text-decoration: none;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
+			color: white;
+			font-family: å¾®è»Ÿæ­£é»‘é«”, æ–°ç´°æ˜é«”, æ¨™æ¥·é«”;
 			font-weight: bold;
 			font-size: 17px;
-		}
-
-		#title {
-			margin-left: 40px;
 		}
 
 		.menu {
@@ -30,20 +27,12 @@ include("../function/condb.php");
 			z-index: 9999999;
 		}
 
-		.menu a {
-			text-decoration: none;
-			color: white;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
-			font-weight: bold;
-			font-size: 17px;
-		}
-
 		.menu_css {
 			float: left;
-			width: 70%;
+			width: 100%;
 			height: inherit;
 			overflow: hidden;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
+			font-family: å¾®è»Ÿæ­£é»‘é«”, æ–°ç´°æ˜é«”, æ¨™æ¥·é«”;
 			font-weight: bold;
 			font-size: 17px;
 			color: white;
@@ -64,30 +53,6 @@ include("../function/condb.php");
 			background-color: black;
 		}
 
-		.menu_search {
-			width: 30%;
-			height: inherit;
-			white-space: nowrap;
-			overflow: hidden;
-			font-family: ·L³n¥¿¶ÂÅé, ·s²Ó©úÅé, ¼Ğ·¢Åé;
-			font-weight: bold;
-			font-size: 17px;
-			color: white;
-		}
-
-		.menu_search tr {
-			display: block;
-		}
-
-		.menu_search td {
-			height: 40px;
-			padding: 0px 15px 0px 15px;
-		}
-
-		.menu_search td:hover {
-			background-color: black;
-		}
-
 		.content {
 			position: relative;
 			word-wrap: break-word;
@@ -97,6 +62,10 @@ include("../function/condb.php");
 
 		.inner_content {
 			padding: 50px 130px 220px 130px;
+		}
+
+		#title {
+			margin-left: 40px;
 		}
 
 		.bimg {
@@ -109,18 +78,8 @@ include("../function/condb.php");
 			height: 100%;
 		}
 
-		input[type=text] {
-			color: black;
-		}
-
-		form {
-			margin-bottom: 0em;
-		}
-
-		#search_icon {
-			/* width: auto; */
-			height: 30px;
-			border: #f1f1f1;
+		.btn-del {
+			margin-right: 10px;
 		}
 	</style>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -146,8 +105,9 @@ include("../function/condb.php");
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link " href="../index.php">­º­¶ </a>
-				<a class="nav-item nav-link active" href="bookstore.php">ªğ¦^®Ñ©±<span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link " href="../index.php">é¦–é  </a>
+				<a class="nav-item nav-link" href="bookstore.php">æ›¸åº—</a>
+				<a class="nav-item nav-link active" href="employee.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">å“¡å·¥</a>
 			</div>
 		</div>
 	</nav>
@@ -160,15 +120,15 @@ include("../function/condb.php");
 						<tr>
 							<td> Search</td>
 							<div class="input-group mb-3">
-									<input type="text" id="keyword" class="form-control" name="keyword" value="" placeholder="¿é¤J·j´MÃöÁä¦r">
-									<button class="btn btn-outline-secondary" type="submit" id="button-addon2">°e¥X</button>
+									<input type="text" id="keyword" class="form-control" name="keyword" value="" placeholder="è¼¸å…¥æœå°‹é—œéµå­—">
+									<button class="btn btn-outline-secondary" type="submit" id="button-addon2">é€å‡º</button>
 							</div>
 						</tr>
 					</form>
 				</td>
 			</tr>
 			<div class="mt-3 mb-3" style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
-				Á`¼Æ¶q¬°:
+				ç¸½æ•¸é‡ç‚º::
 				<?php
 				$id = $_GET['bookstore_id'];
 
@@ -181,9 +141,9 @@ include("../function/condb.php");
 				?>
 				<br>
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<a type="button" class="btn btn-primary" href="./employee_add.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">·s¼W</a>
-					<a type="button" class="btn btn-primary" href="./employee_del.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">§R°£</a>
-					<a type="button" class="btn btn-primary" href="./employee_edit.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">­×§ï</a>
+					<a type="button" class="btn btn-primary" href="./employee_add.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">æ–°å¢</a>
+					<a type="button" class="btn btn-danger" href="./employee_del.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">åˆªé™¤</a>
+					<a type="button" class="btn btn-warning" href="./employee_edit.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">ä¿®æ”¹</a>
 				</div>
 			</div>
 			<table class="table table-bordered table-striped">
@@ -191,11 +151,11 @@ include("../function/condb.php");
 					<tr>
 						<th>#</th>
 						<th>id</th>
-						<th>­û¤u¦W¦r</th>
-						<th>­û¤u¹q¸Ü</th>
-						<th>­û¤uÁ~¤ô</th>
-						<th>­û¤uÂ¾¦ì</th>
-						<th>·Ó¤ù</th>
+						<th>å“¡å·¥åç¨±</th>
+						<th>å“¡å·¥é›»è©±</th>
+						<th>å“¡å·¥è–ªæ°´</th>
+						<th>å“¡å·¥è·ä½</th>
+						<th>ç…§ç‰‡</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -208,9 +168,9 @@ include("../function/condb.php");
 							$keyword = '%' . $keyword . '%';
 						}
 						$id = $_GET['bookstore_id'];
-						$sql = "SELECT bs.id,bs.name,bs.phone,bs.salary,bs.role,bs.img_url FROM employees bs  where (bs.id like ? or bs.name like ? or bs.phone like ? ) and bookstore_id=? ORDER BY bs.id ASC";
+						$sql = "SELECT bs.id,bs.name,bs.phone,bs.salary,bs.role,bs.img_url FROM employees bs  where (bs.name like ?) ORDER BY bs.id ASC";
 						if ($stmt = $db->prepare($sql)) {
-							$stmt->execute(array($keyword, $keyword, $keyword, $keyword, $id));
+							$stmt->execute(array($keyword));
 							for ($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++) {
 					?>
 								<tr>
@@ -223,11 +183,12 @@ include("../function/condb.php");
 									<td><img class="bimg" src="<?php echo $rows[$count]['img_url']; ?>"></img></td>
 								</tr>
 							<?php
-							}
+							
 						}
+					}
 					} else {
 						$id = $_GET['bookstore_id'];
-						$sql = "SELECT bs.id,bs.name,bs.phone,bs.salary,bs.role,bs.img_url FROM employees bs  where (bs.id like ? or bs.name like ? or bs.phone like ? ) and bookstore_id=? ORDER BY bs.id ASC";
+						$sql = "SELECT bs.id,bs.name,bs.phone,bs.salary,bs.role,bs.img_url FROM employees bs  where bookstore_id=? ORDER BY bs.id ASC";
 						if ($stmt = $db->prepare($sql)) {
 							$stmt->execute(array($id));
 

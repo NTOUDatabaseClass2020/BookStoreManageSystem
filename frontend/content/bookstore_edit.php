@@ -60,7 +60,6 @@
 		word-wrap: break-word;
 		width: 100%;
 		top: 40px;
-		background-color: #f1f1f1;
 	}
 	
 	.inner_content {
@@ -125,14 +124,14 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             <a class="nav-item nav-link " href="../index.php">首頁 </a>
-            <a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="bookstore.php">書店</a>
         </div>
     </div>
     </nav>
     <form id="mfrom" method="post" action="bookstore_editsave.php">
 	<div class="content">
 		<div class="inner_content">
-			<table class="table">
+			<table class="table table-bordered table-striped">
 			  <thead>
 				<tr> 
 				  <th>#</th> 
@@ -145,13 +144,13 @@
 			  </thead> 
 			  <tbody>
 					<tr> 
-					  <td><input type="submit" name ="submit" value= "修改">
-					  <td><input type="text" id="name" name="name" value="<?php echo $_POST['name_to_edit']?>"/></td> 
-					  <td><input type="text" id="address" name="address" value="<?php echo $_POST['address_to_edit']?>"/></td> 
-					  <td><input type="text" id="phone" name="phone" value="<?php echo $_POST['phone_to_edit']?>"/></td> 
-                      <td><input type="text" id="business_hour" name="business_hour" value="<?php echo $_POST['business_hour_to_edit']?>"/></td> 
-					  <td><input type="text" id="img_url" name="img_url" value="<?php echo $_POST['img_to_edit']?>"/></td> 
-					  <td><input type="hidden" name="id" value="<?php echo $_POST['id_to_edit']?>"/></td>
+					  <td><input  type="submit" name ="submit" value= "修改" class="btn btn-primary">
+					  <td><input class="form-control" type="text" id="name" name="name" value="<?php echo $_POST['name_to_edit']?>"/></td> 
+					  <td><input class="form-control" type="text" id="address" name="address" value="<?php echo $_POST['address_to_edit']?>"/></td> 
+					  <td><input class="form-control" type="text" id="phone" name="phone" value="<?php echo $_POST['phone_to_edit']?>"/></td> 
+                      <td><input class="form-control" type="text" id="business_hour" name="business_hour" value="<?php echo $_POST['business_hour_to_edit']?>"/></td> 
+					  <td><input class="form-control" type="text" id="img_url" name="img_url" value="<?php echo $_POST['img_to_edit']?>"/></td> 
+					  <td><input class="form-control" type="hidden" name="id" value="<?php echo $_POST['id_to_edit']?>"/></td>
 					</tr> 
 			  </tbody> 
 			</table>

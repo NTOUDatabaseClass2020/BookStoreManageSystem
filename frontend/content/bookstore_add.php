@@ -60,7 +60,7 @@
 		word-wrap: break-word;
 		width: 100%;
 		top: 40px;
-		background-color: #f1f1f1;
+
 	}
 	
 	.inner_content {
@@ -125,14 +125,14 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             <a class="nav-item nav-link " href="../index.php">首頁 </a>
-            <a class="nav-item nav-link active" href="bookstore.php">書店<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="bookstore.php">書店</a>
         </div>
     </div>
     </nav>
 <form id="mfrom" method="post" action="bookstore_addsave.php">
 	<div class="content">
 		<div class="inner_content">
-			<table class="table">
+			<table  class="table table-bordered table-striped">
 			  <thead>
 				<tr> 
 				  <th>#</th> 
@@ -146,13 +146,13 @@
 			  </thead> 
 			  <tbody>
 					<tr> 
-					  <td><input type="submit" name ="submit" value= "新增">
+					  <td><input type="submit" name ="submit" value= "新增" class="btn btn-primary">
 					  <!-- <td><input type="text" id="id" name="id" value=""/></td>  -->
-					  <td><input type="text" id="name" name="name" value=""/></td> 
-					  <td><input type="text" id="address" name="address" value=""/></td> 
-					  <td><input type="text" id="phone" name="phone" value=""/></td> 
-                      <td><input type="text" id="business_hour" name="business_hour" value=""/></td> 
-					  <td><input type="text" id="img_url" name="img_url" value=""/></td> 
+					  <td><input class="form-control" type="text" id="name" name="name" value=""/></td> 
+					  <td><input class="form-control" type="text" id="address" name="address" value=""/></td> 
+					  <td><input class="form-control" type="text" id="phone" name="phone" value=""/></td> 
+                      <td><input class="form-control" type="text" id="business_hour" name="business_hour" value=""/></td> 
+					  <td><input class="form-control" type="text" id="img_url" name="img_url" value=""/></td> 
 					  
 					</tr> 
 			  </tbody> 
