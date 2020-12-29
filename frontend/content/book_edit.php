@@ -54,7 +54,9 @@
 	.menu_css td:hover {
 		background-color: black;
 	}
-
+	#title {
+			margin-left: 40px;
+		}
 	.menu_search{
 		width: 30%;
 		height: inherit;
@@ -81,7 +83,6 @@
 		word-wrap: break-word;
 		width: 100%;
 		top: 40px;
-		background-color: #f1f1f1;
 	}
 
 	.inner_content {
@@ -144,8 +145,7 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 		<a class="nav-item nav-link " href="../index.php">首頁 </a>
-		<a class="nav-item nav-link active" href="bookstore.php">返回書店<span class="sr-only">(current)</span></a>
-		<a class="nav-item nav-link active" href="book.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">編輯書庫<span class="sr-only">(current)</span></a>
+		<a class="nav-item nav-link active" href="bookstore.php">書店</a>
 		</div>
 	</div>
 	</nav>
@@ -181,10 +181,10 @@
 					?>
 					<button class="btn btn-primary" type="submit" name="bookstore_id" >點我更新</button>
 				</div>
-				<table class="table table-bordered table-striped"> 
+				<table class="table table-bordered table-striped mt-3"> 
 				<thead> 
 					<tr> 
-					<th><input class="form-check-input" type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
+					<th><input class="form-check-input" type="checkbox" name="all" onclick="check_all(this,'id[]')" /></th> 
 					<th>id</th>
 					<th>book價錢</th> 
 					<th>book數量</th>
@@ -192,8 +192,7 @@
 					<th>book描述</th> 
 					<th>book種類編號</th> 
 					<th>目前book種類名稱</th>
-					<th>封面</th> 
-					<th></th> 
+					<th>封面</th>  
 					</tr> 
 				</thead> 
 				<tbody> 

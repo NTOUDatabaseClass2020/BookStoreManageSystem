@@ -17,7 +17,9 @@ include("../function/condb.php");
 			font-weight: bold;
 			font-size: 17px;
 		}
-
+		#title {
+			margin-left: 40px;
+		}
 		.menu {
 			position: fixed;
 			width: 100%;
@@ -106,12 +108,12 @@ include("../function/condb.php");
 			$theid += 1;
 			$($idname).append('<tr id="' + $theid + '"> ' +
 				'<th></th>' +
-				'<td><input type="text" id="book_Price" name="book_Price[]" value=""/></td> ' +
-				'<td><input type="text" id="book_Amount" name="book_Amount[]" value=""/></td>' +
-				'<td><input type="text" id="book_Name" name="book_Name[]" value=""/></td> ' +
-				'<td><input type="text" id="book_Description" name="book_Description[]" value=""/></td>' +
-				'<td><input type="text" id="book_Type" name="book_Type[]" value=""/></td>' +
-				'<td><input type="text" id="img_url" name="img_url[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="book_Price" name="book_Price[]" value=""/></td> ' +
+				'<td><input class="form-control" type="text" id="book_Amount" name="book_Amount[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="book_Name" name="book_Name[]" value=""/></td> ' +
+				'<td><input class="form-control" type="text" id="book_Description" name="book_Description[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="book_Type" name="book_Type[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="img_url" name="img_url[]" value=""/></td>' +
 				'</tr>');
 
 
@@ -145,8 +147,7 @@ include("../function/condb.php");
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
 				<a class="nav-item nav-link " href="../index.php">首頁 </a>
-				<a class="nav-item nav-link active" href="bookstore.php">返回書店<span class="sr-only">(current)</span></a>
-				<a class="nav-item nav-link active" href="book.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">編輯書店<span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link active" href="bookstore.php">書店</a>
 			</div>
 		</div>
 	</nav>
@@ -161,7 +162,7 @@ include("../function/condb.php");
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>#</th>
+							<th></th>
 							<th>book價錢</th>
 							<th>book數量</th>
 							<th>book名稱</th>

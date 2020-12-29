@@ -147,7 +147,7 @@ include("../function/condb.php");
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
 				<a class="nav-item nav-link " href="../index.php">首頁 </a>
-				<a class="nav-item nav-link active" href="bookstore.php">返回書店<span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link active" href="bookstore.php">書店</a>
 			</div>
 		</div>
 	</nav>
@@ -182,8 +182,8 @@ include("../function/condb.php");
 				<br>
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<a type="button" class="btn btn-primary" href="./book_add.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">新增</a>
-					<a type="button" class="btn btn-primary" href="./book_del.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">刪除</a>
-					<a type="button" class="btn btn-primary" href="./book_edit.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">修改</a>
+					<a type="button" class="btn btn-danger" href="./book_del.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">刪除</a>
+					<a type="button" class="btn btn-warning" href="./book_edit.php?bookstore_id=<?php echo $_GET["bookstore_id"]; ?>">修改</a>
 				</div>
 			</div>
 			<table class="table table-bordered table-striped">

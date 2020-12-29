@@ -108,11 +108,11 @@ include("../function/condb.php");
 			$theid += 1;
 			$($idname).append('<tr id="' + $theid + '"> ' +
 				'<th></th>' +
-				'<td><input type="text" id="employee_name" name="employee_name[]" value=""/></td> ' +
-				'<td><input type="text" id="employee_phone" name="employee_phone[]" value=""/></td>' +
-				'<td><input type="text" id="employee_salary" name="employee_salary[]" value=""/></td> ' +
-				'<td><input type="text" id="employee_role" name="employee_role[]" value=""/></td>' +
-				'<td><input type="text" id="img_url" name="img_url[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="employee_name" name="employee_name[]" value=""/></td> ' +
+				'<td><input class="form-control" type="text" id="employee_phone" name="employee_phone[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="employee_salary" name="employee_salary[]" value=""/></td> ' +
+				'<td><input class="form-control" type="text" id="employee_role" name="employee_role[]" value=""/></td>' +
+				'<td><input class="form-control" type="text" id="img_url" name="img_url[]" value=""/></td>' +
 				'</tr>');
 
 
@@ -155,22 +155,24 @@ include("../function/condb.php");
 		<div class="content">
 			<div class="inner_content">
 				<div class="btn-group mb-3 " role="group" aria-label="Basic example">
-					<input class="btn btn-primary"  type="button" id="add_button" name="add_button" onclick="addrow('add_file_button')" value="增加附加欄位">
+					<input class="btn btn-primary" type="button" id="add_button" name="add_button" onclick="addrow('add_file_button')" value="增加附加欄位">
 					<input class="btn btn-primary" type="button" id="add_button" name="add_button" onclick="delrow()" value="減少附加欄位">
 					<button class="btn btn-primary" type="submit" name="bookstore_id" value="<?php echo $_GET["bookstore_id"] ?>">點我新增</button>
 				</div>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-						<th>員工名稱</th>
-						<th>員工電話</th>
-						<th>員工薪水</th>
-						<th>員工職位</th>
-						<th>照片</th>
+							<th>#</th>
+							<th>員工名稱</th>
+							<th>員工電話</th>
+							<th>員工薪水</th>
+							<th>員工職位</th>
+							<th>照片</th>
 						</tr>
 					</thead>
 					<tbody id="add_file_button">
 						<tr id="1">
+							<th></th>
 							<td><input class="form-control" type="text" id="employee_name" name="employee_name[]" value="" /></td>
 							<td><input class="form-control" type="text" id="employee_phone" name="employee_phone[]" value="" /></td>
 							<td><input class="form-control" type="text" id="employee_salary" name="employee_salary[]" value="" /></td>
