@@ -153,12 +153,14 @@
 		<div class="content">
 			<div class="inner_content">
 			<tr class="menu_search">
+			<td> Search</td>
 						<td>
 							<form method="post" action="book_edit.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">
 								<tr>
-									<td>Search</td>
-									<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
-									<td><input type="submit" value="送出"></td>
+								<div class="input-group mb-3">
+									<input type="text" id="keyword" class="form-control" name="keyword" value="" placeholder="輸入搜尋關鍵字">
+									<button class="btn btn-outline-secondary" type="submit" id="button-addon2">送出</button>
+							</div>
 								</tr>				  
 							</form>
 						</td>
@@ -177,12 +179,12 @@
 							echo $rowcount;
 
 					?>
-					<button type="submit" name="bookstore_id" >點我更新</button>
+					<button class="btn btn-primary" type="submit" name="bookstore_id" >點我更新</button>
 				</div>
-				<table class="table"> 
+				<table class="table table-bordered table-striped"> 
 				<thead> 
 					<tr> 
-					<th><input type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
+					<th><input class="form-check-input" type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
 					<th>id</th>
 					<th>book價錢</th> 
 					<th>book數量</th>
@@ -213,7 +215,7 @@
 													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr>
-													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
+													<th scope="row"><input class="form-check-input" type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
 													<td><?php echo $rows[$count]['id'];?></td> 
 													<td><input type="text" name="book_Price[]" id="" value="<?php echo $rows[$count]['price'];?>" placeholder="<?php echo $rows[$count]['price'];?>"></td> 
 													<td><input type="text" name="book_Amount[]" id="" value="<?php echo $rows[$count]['amount'];?>" placeholder="<?php echo $rows[$count]['amount'];?>"></td> 
@@ -238,16 +240,16 @@
 								for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 					?>
 							<tr> 
-							<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
+							<th scope="row"><input class="form-check-input" type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
 							<td><?php echo $rows[$count]['id'];?></td> 
-							<td><input type="text" name="book_Price[]" id="" value="<?php echo $rows[$count]['price'];?>" placeholder="<?php echo $rows[$count]['price'];?>"></td> 
-							<td><input type="text" name="book_Amount[]" id="" value="<?php echo $rows[$count]['amount'];?>" placeholder="<?php echo $rows[$count]['amount'];?>"></td> 
-							<td><input type="text" name="book_Name[]" id="" value="<?php echo $rows[$count]['book_name'];?>" placeholder="<?php echo $rows[$count]['book_name'];?>"></td> 
-							<td><input type="text" name="book_Description[]" value="<?php echo $rows[$count]['description'];?>" value="" placeholder="<?php echo $rows[$count]['description'];?>"></td> 
-							<td><input type="text" name="book_Type[]" id="" value="<?php echo $rows[$count]['type'];?>" placeholder="<?php echo $rows[$count]['type'];?>"></td> 
+							<td><input class="form-control" type="text" name="book_Price[]" id="" value="<?php echo $rows[$count]['price'];?>" placeholder="<?php echo $rows[$count]['price'];?>"></td> 
+							<td><input class="form-control" type="text" name="book_Amount[]" id="" value="<?php echo $rows[$count]['amount'];?>" placeholder="<?php echo $rows[$count]['amount'];?>"></td> 
+							<td><input class="form-control" type="text" name="book_Name[]" id="" value="<?php echo $rows[$count]['book_name'];?>" placeholder="<?php echo $rows[$count]['book_name'];?>"></td> 
+							<td><input class="form-control" type="text" name="book_Description[]" value="<?php echo $rows[$count]['description'];?>" value="" placeholder="<?php echo $rows[$count]['description'];?>"></td> 
+							<td><input class="form-control" type="text" name="book_Type[]" id="" value="<?php echo $rows[$count]['type'];?>" placeholder="<?php echo $rows[$count]['type'];?>"></td> 
 							<td><?php echo $rows[$count]['type_name'];?></td>
-							<td><input type="text" name="img_url[]" id="" value="<?php echo $rows[$count]['img_url'];?>" placeholder="<?php echo $rows[$count]['img_url'];?>"></td> 
-							<td><input type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td>
+							<td><input class="form-control" type="text" name="img_url[]" id="" value="<?php echo $rows[$count]['img_url'];?>" placeholder="<?php echo $rows[$count]['img_url'];?>"></td> 
+							<td><input class="form-control" type="hidden" name="selectid[]" value="<?php echo $rows[$count]['id'];?>"></td>
 						</tr> 
 					<?php
 								}

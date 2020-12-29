@@ -173,12 +173,12 @@ include("../function/condb.php");
 					<tbody id="add_file_button">
 						<tr id="1">
 							<th></th>
-							<td><input type="text" id="book_Price" name="book_Price[]" value="" /></td>
-							<td><input type="text" id="book_Amount" name="book_Amount[]" value="" /></td>
-							<td><input type="text" id="book_Name" name="book_Name[]" value="" /></td>
-							<td><input type="text" id="book_Description" name="book_Description[]" value="" /></td>
-							<td><input type="text" id="book_Type" name="book_Type[]" value="" /></td>
-							<td><input type="text" id="img_url" name="img_url[]" value="" /></td>
+							<td><input class="form-control" type="text" id="book_Price" name="book_Price[]" value="" /></td>
+							<td><input class="form-control" type="text" id="book_Amount" name="book_Amount[]" value="" /></td>
+							<td><input class="form-control" type="text" id="book_Name" name="book_Name[]" value="" /></td>
+							<td><input class="form-control" type="text" id="book_Description" name="book_Description[]" value="" /></td>
+							<td><input class="form-control" type="text" id="book_Type" name="book_Type[]" value="" /></td>
+							<td><input class="form-control" type="text" id="img_url" name="img_url[]" value="" /></td>
 						</tr>
 					</tbody>
 				</table>

@@ -152,20 +152,21 @@
 			<div class="content">
 			<div class="inner_content">
 			<tr class="menu_search">
+			<td> Search</td>
 						<td>
 							<form method="post" action="book_del.php?bookstore_id=<?php echo $_GET["bookstore_id"] ?>">
 								<tr>
-									<td>Search</td>
-									<td><input type="text" id="keyword" name="keyword" value="" placeholder="輸入搜尋關鍵字" /></td>
-									<td><input type="submit" value="送出"></td>
-								</tr>				  
+								<div class="input-group mb-3">
+									<input type="text" id="keyword" class="form-control" name="keyword" value="" placeholder="輸入搜尋關鍵字">
+									<button class="btn btn-outline-secondary" type="submit" id="button-addon2">送出</button>
+							</div></tr>				  
 							</form>
 						</td>
 					</tr>
 			<table>
 					
 					
-			<form action="book_delsave.php?bookstore_id=<?php echo $_GET["bookstore_id"]?>" method="post">
+			<form  action="book_delsave.php?bookstore_id=<?php echo $_GET["bookstore_id"]?>" method="post">
 								<div style="text-align: left;font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size: 15px;font-weight: bold;">
 									總數量為: 
 									<?php
@@ -178,14 +179,14 @@
 										if($rowcount = $stmt->fetchColumn())
 											echo $rowcount;
 									?>
-									<button type="submit" name="id" >點我刪除</button>
+									<button class="btn btn-primary" type="submit" name="id" >點我刪除</button>
 								</div>
 								
-								<table class="table">
-								
+								<table class="table table-bordered table-striped">
+								<div>
 									<thead> 
 										<tr> 
-										<th><input type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
+										<th><input class="form-check-input" type="checkbox" name="all" onclick="check_all(this,'id[]')" />#</th> 
 										<th>id</th> 
 										<th>book價錢</th> 
 										<th>book數量</th>
@@ -214,7 +215,7 @@
 													for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr> 
-													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th>
+													<th scope="row"><input class="form-check-input" type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th>
 														<th scope="row"><?php echo $count;?></th> 
 														<td><?php echo $rows[$count]['id'];?></td> 
 														<td><?php echo $rows[$count]['price'];?></td> 
@@ -237,7 +238,7 @@
 														for($rows = $stmt->fetchAll(), $count = 0; $count < count($rows); $count++){
 											?>
 													<tr> 
-													<th scope="row"><input type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
+													<th scope="row"><input class="form-check-input" type="checkbox" name="id[]" value="<?php echo $rows[$count]['id'];?>"> </th> 
 													<td><?php echo $rows[$count]['id'];?></td> 
 													<td><?php echo $rows[$count]['price'];?></a></td> 
 													<td><?php echo $rows[$count]['amount'];?></td> 
